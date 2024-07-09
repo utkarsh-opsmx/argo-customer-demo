@@ -4,7 +4,7 @@ metadata:
   name: argocd-pvc-manager-role
 rules:
   - apiGroups:
-      - ""  # Core API group
+      - argoproj.io # Core API group
     resources:
       - persistentvolumeclaims
     verbs:
