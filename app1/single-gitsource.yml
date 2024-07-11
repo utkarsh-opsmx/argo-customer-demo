@@ -8,8 +8,8 @@ spec:
     namespace: my-task
     server: 'https://kubernetes.default.svc'
   source:
-    path: temp
-    repoURL: 'https://github.com/SMACAcademy/ArgoCD-Complete-Master-Course.git'
+    path: app1
+    repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
     targetRevision: HEAD
   project: default
   syncPolicy:
