@@ -8,7 +8,7 @@ spec:
     namespace: my-task
     server: 'https://kubernetes.default.svc'
   source:
-    path: app1
+    path: temp
     repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
     targetRevision: HEAD
   project: default
