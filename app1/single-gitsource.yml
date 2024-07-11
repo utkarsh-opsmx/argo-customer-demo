@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: single-github-resource
+  namespace: argocd
+spec:
+  destination:
+    namespace: my-task
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: temp
+    repoURL: 'https://github.com/SMACAcademy/ArgoCD-Complete-Master-Course.git'
+    targetRevision: HEAD
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
