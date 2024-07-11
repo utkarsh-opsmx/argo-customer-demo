@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: my-service
-  namespace: bitthal-demo
+  namespace: argocd
 spec:
   selector:
     name: my-app
