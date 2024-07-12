@@ -1,23 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: two-github-resource
-  namespace: argocd
+  name: two-sources
 spec:
+  project: default
   destination:
+    server: https://kubernetes.default.svc
     namespace: my-task
-    server: 'https://kubernetes.default.svc'
-  source:
-    - repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
+  sources:
+    - repoURL: https://github.com/bitthalpatidar/test-argo.git
       path: test1
       targetRevision: HEAD
-    - repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
+    - repoURL: https://github.com/bitthalpatidar/test-argo.git
       path: test2
       targetRevision: HEAD
-  project: default
-  syncPolicy:
-    automated:
-      prune: false
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
