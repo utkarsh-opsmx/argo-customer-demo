@@ -7,10 +7,10 @@ spec:
     namespace: my-task
     server: 'https://kubernetes.default.svc'
   source:
-    - repoURL: https://github.com/bitthalpatidar/test-argo.git
+    - repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
       path: test1
       targetRevision: HEAD
-    - repoURL: https://github.com/bitthalpatidar/test-argo.git
+    - repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
       path: test2
       targetRevision: HEAD
   project: default
