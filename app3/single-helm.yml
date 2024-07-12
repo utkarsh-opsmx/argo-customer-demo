@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
     targetRevision: HEAD
-    path: single-helm-chart
+    path: single-helm-chart/templates
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: my-task
