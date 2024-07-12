@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: two-github-resource
+  namespace: argocd
 spec:
   destination:
     namespace: my-task
