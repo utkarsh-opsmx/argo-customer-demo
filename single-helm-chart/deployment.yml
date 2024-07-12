@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      name: my-app
+  template:
+    metadata:
+      name: my-pod
+      labels:
+        name: my-app
+    spec:
+      containers:
+        - name: con1
+          image: nginx
+          command: ["/bin/bash","-c","while true;  do echo mypod is running; sleep 5; done"]
