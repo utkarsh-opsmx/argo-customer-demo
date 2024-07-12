@@ -8,12 +8,12 @@ spec:
     namespace: my-task
     server: 'https://kubernetes.default.svc'
   source:
-    path: test1
-    repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
-    targetRevision: HEAD
-    path: test2
-    repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
-    targetRevision: HEAD
+    - path: test1
+      repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
+      targetRevision: HEAD
+    - path: test2
+      repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
+      targetRevision: HEAD
   project: default
   syncPolicy:
     automated:
