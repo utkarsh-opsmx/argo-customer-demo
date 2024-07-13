@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-deployment
+  name: {{ include "single-helm-chart.fullname" . }}
 spec:
-  replicas: 5
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      name: my-app
+      app: {{ template "single-helm-chart.name" . }}
   template:
     metadata:
-      name: my-pod
       labels:
-        name: my-app
+        app: {{ template "single-helm-chart.name" . }}
     spec:
       containers:
-        - name: con1
-          image: nginx
-          command: ["/bin/bash","-c","while true;  do echo mypod is running; sleep 5; done"]
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["/bin/bash", "-c", "while true; do echo mypod is running; sleep 5; done"]
