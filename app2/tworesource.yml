@@ -6,7 +6,7 @@ spec:
   project: default
   destination:
     server: https://kubernetes.default.svc
-    namespace: twosources
+    namespace: my-task
   sources:
     - repoURL: https://github.com/bitthalpatidar/test-argo.git
       path: test1
