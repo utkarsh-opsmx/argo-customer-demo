@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: single-helm-app
+  name: single-helm
 spec:
   project: default
   source:
