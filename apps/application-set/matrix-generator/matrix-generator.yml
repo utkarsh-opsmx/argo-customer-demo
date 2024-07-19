@@ -12,17 +12,17 @@ spec:
                 - appName: dubblehelm
           - list:
               elements:
-                - name: ex.helm
+                - name: helm1
                   valuesPath: "datas/dubble-helm/helm1/values.yml"
-                - name: txt.helm
+                - name: helm2
                   valuesPath: "datas/dubble-helm/helm2/values.yml"
   template:
     metadata:
-      name: '{{appName}}-{{environment.name}}'
+      name: '{{appName}}-{{environment.name | lower | replace "_" "-"}}'
     spec:
       project: default
       source:
-        repoURL: "https://github.com/bitthalpatidar/argocd-task.git"
+        repoURL: "https://github.com/bitthalpatidar/test-argo.git"
         targetRevision: "main"
         path: "{{environment.valuesPath}}"
       destination:
