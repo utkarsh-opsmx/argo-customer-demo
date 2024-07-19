@@ -9,16 +9,16 @@ spec:
         generators:
           - list:
               elements:
-                - appName: matrix-generator
+                - name: helm-chart2
+                  valuesPath: "datas/helm/dubble-helm/helm2/values.yml"
           - list:
               elements:
                 - name: helm-chart1
                   valuesPath: "datas/helm/dubble-helm/helm1/values.yml"
-                - name: helm-chart2
-                  valuesPath: "datas/helm/dubble-helm/helm2/values.yml"
+
   template:
     metadata:
-      name: '{{appName}}-{{environment.name}}'
+      name: '{{appName}}-{{environment.name}'
     spec:
       project: default
       source:
