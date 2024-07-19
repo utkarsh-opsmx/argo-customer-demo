@@ -1,0 +1,32 @@
+# this generator i use for one git source and one helm source
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: git-application-set
+  namespace: argocd
+spec:
+  generators:
+    - git:                 
+        repoURL: "https://github.com/bitthalpatidar/test-argo.git"
+        revision: "main"
+        directories:
+          - path: "datas/application-set-date/git-data/*"
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: default
+      source:
+        repoURL: "https://github.com/bitthalpatidar/test-argo.git"
+        targetRevision: "main"
+        path: '{{path}}'
+      destination:
+        server: "https://kubernetes.default.svc"
+        namespace: 'git-generators'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+          syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
