@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: single-helm-deploy
+  name: my-depl11
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
