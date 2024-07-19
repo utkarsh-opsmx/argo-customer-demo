@@ -12,13 +12,13 @@ spec:
                 - appName: matrix-generator
           - list:
               elements:
-                - name: helm-chart-11
+                - name: helm-chart1
                   valuesPath: "datas/helm/dubble-helm/helm1/values.yml"
-                - name: helm-chart-22
+                - name: helm-chart2
                   valuesPath: "datas/helm/dubble-helm/helm2/values.yml"
   template:
     metadata:
-      name: '{{appName}}-{{environment.name | lower | replace "_" "-"}}'
+      name: '{{appName}}-{{environment.name}}'
     spec:
       project: default
       source:
