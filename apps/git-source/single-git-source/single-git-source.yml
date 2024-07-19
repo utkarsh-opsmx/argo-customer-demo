@@ -8,7 +8,7 @@ spec:
     namespace: argocd-kt
     server: 'https://kubernetes.default.svc'
   source:
-    path: data/single-source
+    path: datas/git/single-git-source
     repoURL: 'https://github.com/bitthalpatidar/argocd-task.git'
     targetRevision: HEAD
   project: default
