@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: single-git-source
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd-kt
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: data/single-source
+    repoURL: 'https://github.com/bitthalpatidar/argocd-task.git'
+    targetRevision: HEAD
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
