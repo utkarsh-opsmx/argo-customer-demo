@@ -9,16 +9,16 @@ spec:
         generators:
           - list:
               elements:
-                - appName: dubblehelm
+                - appName: two-helm
           - list:
               elements:
-                - name: helm1
-                  valuesPath: "datas/dubble-helm/helm1/values.yml"
-                - name: helm2
-                  valuesPath: "datas/dubble-helm/helm2/values.yml"
+                - name: helm-chart-1
+                  valuesPath: "datas/application-set-date/matrix-data/matrix1/two-helm/helm-chart-1/values.yml"
+                - name: helm-chart-2
+                  valuesPath: "datas/application-set-date/matrix-data/matrix2/two-helm/helm-chart-2/values.yml"
   template:
     metadata:
-      name: '{{appName}}-{{environment.name | lower | replace "_" "-"}}'
+      name: '{{appName}}-{{environment.name}}'
     spec:
       project: default
       source:
