@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-helm1-service
+  name: my-ser11
 spec:
   selector:
     app: my-app
