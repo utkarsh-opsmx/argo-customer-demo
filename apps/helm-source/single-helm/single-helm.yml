@@ -9,7 +9,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
-    path: data/single-helm
+    path: datas/helm/single-helm
     targetRevision: HEAD
     helm:
       valueFiles:
