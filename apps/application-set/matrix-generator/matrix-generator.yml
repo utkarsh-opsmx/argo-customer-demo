@@ -9,20 +9,20 @@ spec:
         generators:
           - list:
               elements:
-                - name: helm-chart2
-                  valuesPath: "datas/helm/dubble-helm/helm2/values.yml"
+                - appName: dubble-helm
           - list:
               elements:
-                - name: helm-chart1
-                  valuesPath: "datas/helm/dubble-helm/helm1/values.yml"
-
+                - name: helm1
+                  valuesPath: "datas/dubble-helm/helm1/values.yml"
+                - name: helm2
+                  valuesPath: "datas/dubble-helm/helm2/values.yml"
   template:
     metadata:
-      name: '{{appName}}-{{environment.name}'
+      name: '{{appName}}-{{environment.name}}'
     spec:
       project: default
       source:
-        repoURL: "https://github.com/bitthalpatidar/test-argo.git"
+        repoURL: "https://github.com/bitthalpatidar/argocd-task.git"
         targetRevision: "main"
         path: "{{environment.valuesPath}}"
       destination:
