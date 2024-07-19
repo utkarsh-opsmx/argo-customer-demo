@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: applicationset-matrix
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - appName: matrix-gen-appset-two-helm
+          - list:
+              elements:
+                - name: helm-chart-11
+                  valuesPath: "datas/helm/dubble-helm/helm1/values.yml"
+                - name: helm-chart-22
+                  valuesPath: "datas/helm/dubble-helm/helm2/values.yml"
+  template:
+    metadata:
+      name: '{{appName}}-{{environment.name}}'
+    spec:
+      project: default
+      source:
+        repoURL: "https://github.com/bitthalpatidar/test-argo.git"
+        targetRevision: "main"
+        path: "{{environment.valuesPath}}"
+      destination:
+        server: "https://kubernetes.default.svc"
+        namespace: 'argocd-kt1'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
