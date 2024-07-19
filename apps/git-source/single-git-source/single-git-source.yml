@@ -9,7 +9,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: datas/git/single-git-source
-    repoURL: 'https://github.com/bitthalpatidar/argocd-task.git'
+    repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
     targetRevision: HEAD
   project: default
   syncPolicy:
