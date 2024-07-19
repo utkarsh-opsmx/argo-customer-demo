@@ -9,7 +9,7 @@ spec:
         generators:
           - list:
               elements:
-                - appName: matrix-gen-appset-two-helm
+                - appName: matrix-generator
           - list:
               elements:
                 - name: helm-chart-11
@@ -18,7 +18,7 @@ spec:
                   valuesPath: "datas/helm/dubble-helm/helm2/values.yml"
   template:
     metadata:
-      name: '{{appName}}-{{environment.name}}'
+      name: '{{appName}}-{{environment.name | lower | replace "_" "-"}}'
     spec:
       project: default
       source:
