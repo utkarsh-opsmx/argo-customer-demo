@@ -9,12 +9,12 @@ spec:
         generators:
           - list:
               elements:
-                - appName: dubble-helm
+                - appName: dubblehelm
           - list:
               elements:
-                - name: helm1
+                - name: ex.helm
                   valuesPath: "datas/dubble-helm/helm1/values.yml"
-                - name: helm2
+                - name: txt.helm
                   valuesPath: "datas/dubble-helm/helm2/values.yml"
   template:
     metadata:
