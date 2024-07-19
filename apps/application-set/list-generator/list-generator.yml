@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: list-appset
+  name: list-application-set
   namespace: argocd
 spec:
   generators:
     - list:
         elements:
-          - name: list-generator-app1
+          - name: list-application-set-app1
             repoURL: https://github.com/bitthalpatidar/test-argo.git          #pod
             targetRevision: HEAD
             path: datas/application-set-date/list-data/app1
-          - name: list-generator-app2
+          - name: list-application-set-app2
             repoURL: https://github.com/bitthalpatidar/test-argo.git           #service
             targetRevision: HEAD
             path: datas/application-set-date/list-data/app2
