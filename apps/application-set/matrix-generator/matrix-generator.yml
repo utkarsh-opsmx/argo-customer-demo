@@ -9,7 +9,8 @@ spec:
         generators:
           - list:
               elements:
-                - appName: two-helm
+                - appName: two-helm1
+                - appName: two-helm2
           - list:
               elements:
                 - name: helm-chart-1
@@ -18,7 +19,7 @@ spec:
                   valuesPath: "datas/application-set-date/matrix-data/matrix2/two-helm/helm-chart-2/values.yml"
   template:
     metadata:
-      name: '{{appName}}-{{environment.name | lower | replace "_" "-"}}'
+      name: '{{appName}}-{{name}}'
     spec:
       project: default
       source:
