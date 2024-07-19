@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: example-appset
+  name: list-appset
   namespace: argocd
 spec:
   generators:
     - list:
         elements:
           - name: list-generator-app1
-            repoURL: https://github.com/bitthalpatidar/test-argo.git
+            repoURL: https://github.com/bitthalpatidar/test-argo.git          #pod
             targetRevision: HEAD
-            path: data/application-set-data/app1
+            path: datas/application-set-date/list-data/app1
           - name: list-generator-app2
-            repoURL: https://github.com/bitthalpatidar/test-argo.git
+            repoURL: https://github.com/bitthalpatidar/test-argo.git           #service
             targetRevision: HEAD
-            path: data/application-set-data/app2
+            path: datas/application-set-date/list-data/app2
   template:
     metadata:
       name: '{{name}}'
@@ -33,5 +33,3 @@ spec:
           selfHeal: true
         syncOptions:
           - CreateNamespace=true
-          - ServerSideApply=true
-          - PrunePropagationPolicy=orphan
