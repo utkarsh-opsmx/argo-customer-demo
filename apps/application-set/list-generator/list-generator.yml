@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: example-appset
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - name: list-generator-app1
+            repoURL: https://github.com/bitthalpatidar/test-argo.git
+            targetRevision: HEAD
+            path: data/application-set-data/app1
+          - name: list-generator-app2
+            repoURL: https://github.com/bitthalpatidar/test-argo.git
+            targetRevision: HEAD
+            path: data/application-set-data/app2
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: default
+      source:
+        repoURL: '{{repoURL}}'
+        targetRevision: '{{targetRevision}}'
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{name}}-namespace'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+          - PrunePropagationPolicy=orphan
