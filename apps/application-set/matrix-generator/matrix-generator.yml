@@ -18,7 +18,7 @@ spec:
                   valuesPath: "datas/application-set-date/matrix-data/matrix2/two-helm/helm-chart-2/values.yml"
   template:
     metadata:
-      name: '{{appName}}-{{environment.name | lower | replace "_" "-"}}'
+      name: '{{appName}}-{{environment.name}}'
     spec:
       project: default
       source:
