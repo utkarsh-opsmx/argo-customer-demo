@@ -25,7 +25,7 @@ spec:
       source:
         repoURL: "https://github.com/bitthalpatidar/test-argo.git"
         targetRevision: "main"
-        path: "{{environment.valuesPath}}"
+        path: "{{ .valuesPath}}"
       destination:
         server: "https://kubernetes.default.svc"
         namespace: 'argocd-kt1'
