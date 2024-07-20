@@ -10,7 +10,7 @@ spec:
           - list:
               elements:
                 - appName: two-helm1
-                - appName: two-helm2
+                #- appName: two-helm2
           - list:
               elements:
                 - name: helm-chart-1
