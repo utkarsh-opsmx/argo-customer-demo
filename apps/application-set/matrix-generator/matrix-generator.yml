@@ -10,11 +10,11 @@ spec:
           - list:
               elements:
                 - appName: two-helm1
-                - appName: two-helm2
+                # - appName: two-helm2
           - list:
               elements:
-                # - name: helm-chart-1
-                #   valuesPath: "datas/application-set-date/matrix-data/matrix1/two-helm/helm-chart-1"
+                - name: helm-chart-1
+                  valuesPath: "datas/application-set-date/matrix-data/matrix1/two-helm/helm-chart-1"
                 - name: helm-chart-2
                   valuesPath: "datas/application-set-date/matrix-data/matrix2/two-helm/helm-chart-2"
                 #               #datas/application-set-date/matrix-data/matrix2/two-helm/helm-chart-2/values.yaml
