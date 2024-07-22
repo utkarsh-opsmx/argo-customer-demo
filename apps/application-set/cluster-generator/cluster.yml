@@ -11,7 +11,7 @@ spec:
               env: production  # Label used to select Minikube node
   template:
     metadata:
-      name: '{{name}}-application'
+      name: 'cluster-generator-aap'
     spec:
       project: default
       source:
