@@ -19,7 +19,7 @@ spec:
         path: 'datas/helm/single-helm'  # Path in the repo where the Helm chart is located
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: 'default'
+        namespace: 'my-cluster'
       syncPolicy:
         automated:
           prune: true
