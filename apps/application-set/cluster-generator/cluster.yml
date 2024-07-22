@@ -20,7 +20,7 @@ spec:
         path: 'datas/helm/single-helm'  # Adjust the path to where your application manifests or Helm charts are located
       destination:
         server: '{{server}}'
-        namespace: 'default'  # Adjust the namespace as needed
+        namespace: 'my-cluster'  # Adjust the namespace as needed
       syncPolicy:
         automated:
           prune: true
