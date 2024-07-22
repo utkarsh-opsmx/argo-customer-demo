@@ -1,25 +1,26 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cluster-application-set
+  name: simple-cluster-application-set
   namespace: argocd
 spec:
   generators:
     - clusters:
         selectors:
-          - name: 'minikube'  # This should match a label on your Minikube cluster
+          - matchLabels:
+              env: production  # Label used to select Minikube node
   template:
     metadata:
-      name: 'cluster-minikube-app-{{name}}'  # Include the cluster name to ensure uniqueness
+      name: '{{name}}-application'
     spec:
       project: default
       source:
         repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
         targetRevision: 'main'
-        path: 'datas/helm/single-helm'  # Path in the repo where the Helm chart is located
+        path: 'datas/helm/single-helm'  # Adjust the path to where your application manifests or Helm charts are located
       destination:
-        server: 'https://kubernetes.default.svc'
-        namespace: 'my-cluster'
+        server: '{{server}}'
+        namespace: 'default'  # Adjust the namespace as needed
       syncPolicy:
         automated:
           prune: true
