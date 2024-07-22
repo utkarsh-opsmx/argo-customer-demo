@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-application-set
+  namespace: argocd
+spec:
+  generators:
+    - clusters:
+        selectors:
+          - name: 'minikube'  # This should match a label on your Minikube cluster
+  template:
+    metadata:
+      name: 'minikube-app'
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/bitthalpatidar/argocd-task.git'
+        targetRevision: 'main'
+        path: 'datas/helm/single-helm'  # Path in the repo where the Helm chart is located
+      destination:
+        server: '{{server}}'
+        namespace: 'default'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
