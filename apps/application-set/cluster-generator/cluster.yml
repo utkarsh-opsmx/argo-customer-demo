@@ -19,7 +19,7 @@ spec:
         targetRevision: 'main'
         path: 'datas/helm/single-helm'  # Adjust the path to where your application manifests or Helm charts are located
       destination:
-        server: '{{server}}'
+        server: '{{.server}}'
         namespace: 'my-cluster'  # Adjust the namespace as needed
       syncPolicy:
         automated:
