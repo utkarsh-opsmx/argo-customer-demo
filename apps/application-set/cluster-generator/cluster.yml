@@ -18,7 +18,7 @@ spec:
         targetRevision: 'main'
         path: 'datas/helm/single-helm'  # Path in the repo where the Helm chart is located
       destination:
-        server: '{{server}}'
+        server: 'https://kubernetes.default.svc'
         namespace: 'default'
       syncPolicy:
         automated:
