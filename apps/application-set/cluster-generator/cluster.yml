@@ -10,7 +10,7 @@ spec:
           - name: 'minikube'  # This should match a label on your Minikube cluster
   template:
     metadata:
-      name: 'minikube-app'
+      name: 'cluster-minikube-app'
     spec:
       project: default
       source:
