@@ -14,7 +14,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: 'https://github.com/bitthalpatidar/argocd-task.git'
+        repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
         targetRevision: 'main'
         path: 'datas/helm/single-helm'  # Path in the repo where the Helm chart is located
       destination:
