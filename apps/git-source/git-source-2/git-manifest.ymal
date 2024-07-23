@@ -15,3 +15,9 @@ spec:
     - repoURL: https://github.com/bitthalpatidar/task-argo.git
       path: datas/git/two-git-source/git1
       targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
