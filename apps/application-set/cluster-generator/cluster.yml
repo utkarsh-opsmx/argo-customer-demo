@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   generators:
-    - clusters:
+    - clusters: {}
         # selectors:
         #   - matchLabels:
         #       env: production  # Label used to select Minikube node
