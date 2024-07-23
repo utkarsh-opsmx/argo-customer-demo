@@ -7,7 +7,7 @@ spec:
   project: default
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd-kt-1
+    namespace: argocd-kt1
   sources:
     - repoURL: https://github.com/bitthalpatidar/argocd-task.git
       path: data/two-source/source-one
