@@ -6,9 +6,9 @@ metadata:
 spec:
   generators:
     - clusters:
-        selectors:
-          - matchLabels:
-              env: production  # Label used to select Minikube node
+        # selectors:
+        #   - matchLabels:
+        #       env: production  # Label used to select Minikube node
   template:
     metadata:
       name: 'cluster-generator-aap'
