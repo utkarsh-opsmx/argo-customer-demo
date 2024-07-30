@@ -6,16 +6,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/your-repo/your-application-configs'
-    path: 'path/to/your/manifests'
+    repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
+    path: 'datas/test-app-db'
     targetRevision: HEAD
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: default
+    namespace: test-db
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
   # Optional: set a sync wave if necessary
   # annotations:
   #   argocd.argoproj.io/sync-wave: "1"
