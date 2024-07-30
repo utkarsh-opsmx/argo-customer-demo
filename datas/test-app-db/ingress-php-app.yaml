@@ -17,7 +17,7 @@ spec:
       paths:
       - backend:
           service:
-            name: mysql
+            name: mysql-svc
             port:
               number: 80
         path: /
