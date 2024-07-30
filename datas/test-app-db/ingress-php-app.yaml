@@ -12,7 +12,7 @@ metadata:
   name: php-app-ingress
 spec:
   rules:
-  - host: test.xample.local
+  - host: xample.local
     http:
       paths:
       - backend:
@@ -24,4 +24,4 @@ spec:
         pathType: ImplementationSpecific
   tls:
   - hosts:
-    - test.xample.local
+    - xample.local
