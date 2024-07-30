@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: init-db
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - name: init-db
+        image: mysql:8.0
+        command: ["/bin/sh", "-c"]
+        args:
+          - |
+            sleep 30; # wait for MySQL to start
+            mysql -h mysql -u myuser -pmypassword mydatabase -e "CREATE TABLE IF NOT EXISTS mytable (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL);"
+            mysql -h mysql -u myuser -pmypassword mydatabase -e "INSERT INTO mytable (name) VALUES ('Initial Entry');"
+      restartPolicy: OnFailure
