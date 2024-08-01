@@ -30,7 +30,7 @@ spec:
               mountPath: /var/lib/postgresql/data
           env:
             - name: POSTGRES_PASSWORD
-              value: "mysecretpassword" # Consider using secrets for sensitive data
+              value: "mysecretpassword"  # Use a secret in production
             - name: POSTGRES_USER
               value: "postgres"
             - name: POSTGRES_DB
@@ -44,4 +44,3 @@ spec:
           requests:
             storage: {{ .Values.persistence.size }}
         storageClassName: {{ .Values.persistence.storageClass }}
-
