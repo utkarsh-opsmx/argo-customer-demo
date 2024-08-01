@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: argocd-kt
+    namespace: argocd
     server: 'https://kubernetes.default.svc'
   source:
     repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
