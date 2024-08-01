@@ -1,23 +1,20 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: postgres-statfull-set
-#   namespace: argocd
-# spec:
-#   destination:
-#     namespace: argocd-kt
-#     server: 'https://kubernetes.default.svc'
-#   source:
-#     repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
-#     path: datas/postgresql-helm-chart
-#     targetRevision: HEAD
-#     helm:
-#       valueFiles:
-#         - values.yaml
-#   project: default
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#     syncOptions:
-#       - CreateNamespace=true
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres-statfull-set
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd-kt
+    server: 'https://kubernetes.default.svc'
+  source:
+    repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
+    path: datas/postgresql-helm-chart
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
