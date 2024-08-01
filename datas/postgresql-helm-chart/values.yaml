@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: postgres
-  tag: "14" # PostgreSQL version
+  tag: "14"
   pullPolicy: IfNotPresent
 
 service:
@@ -12,10 +12,9 @@ service:
 
 persistence:
   enabled: true
-  storageClass: "default" # Adjust according to your cluster's storage class
+  storageClass: "standard"  # Default storage class for Minikube
   accessModes:
     - ReadWriteOnce
   size: 8Gi
 
 resources: {}
-
