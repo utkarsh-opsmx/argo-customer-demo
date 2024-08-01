@@ -1,0 +1,21 @@
+replicaCount: 1
+
+image:
+  repository: postgres
+  tag: "14" # PostgreSQL version
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 5432
+  name: postgresql
+
+persistence:
+  enabled: true
+  storageClass: "default" # Adjust according to your cluster's storage class
+  accessModes:
+    - ReadWriteOnce
+  size: 4Gi
+
+resources: {}
+

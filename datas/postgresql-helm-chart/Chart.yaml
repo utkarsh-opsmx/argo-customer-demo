@@ -1,0 +1,7 @@
+apiVersion: v2
+name: postgresql
+description: A Helm chart for deploying PostgreSQL as a StatefulSet
+type: application
+version: 0.1.0
+appVersion: "14" # PostgreSQL version
+
