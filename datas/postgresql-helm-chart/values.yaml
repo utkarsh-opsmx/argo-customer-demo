@@ -15,7 +15,7 @@ persistence:
   storageClass: "default" # Adjust according to your cluster's storage class
   accessModes:
     - ReadWriteOnce
-  size: 4Gi
+  size: 8Gi
 
 resources: {}
 
