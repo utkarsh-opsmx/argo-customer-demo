@@ -17,4 +17,5 @@
 #       - CreateNamespace=true
 #   # Optional: set a sync wave if necessary
 #   # annotations:
-#   #   argocd.argoproj.io/sync-wave: "1"
+#   #   argocd.argoproj.io/sync-wave: "1" 
+#   #  test commit without verified
