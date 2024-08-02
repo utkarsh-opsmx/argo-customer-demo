@@ -1,20 +1,20 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: demo-test-db
-  namespace: argocd
-spec:
-  project: default
-  source:
-    repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
-    path: 'datas/test-app-db'
-    targetRevision: HEAD
-  destination:
-    server: 'https://kubernetes.default.svc'
-    namespace: test-db
-  syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
-  # Optional: set a sync wave if necessary
-  # annotations:
-  #   argocd.argoproj.io/sync-wave: "1"
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: demo-test-db
+#   namespace: argocd
+# spec:
+#   project: default
+#   source:
+#     repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
+#     path: 'datas/test-app-db'
+#     targetRevision: HEAD
+#   destination:
+#     server: 'https://kubernetes.default.svc'
+#     namespace: test-db
+#   syncPolicy:
+#     syncOptions:
+#       - CreateNamespace=true
+#   # Optional: set a sync wave if necessary
+#   # annotations:
+#   #   argocd.argoproj.io/sync-wave: "1"
