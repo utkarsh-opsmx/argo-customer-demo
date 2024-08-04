@@ -4,7 +4,9 @@ metadata:
   name: image-updater-app
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/update-strategy: "latest" # or other strategies like "tag"
+    argocd-image-updater.argoproj.io/image-list: bitthalpatidar/image:1.2.x
+    argocd-image-updater.argoproj.io/image.update-strategy: semver
+    argocd-image-updater.argoproj.io/write-back-method: git
 spec:
   project: default
   source:
