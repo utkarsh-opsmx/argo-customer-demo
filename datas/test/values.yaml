@@ -1,5 +1,5 @@
 replicaCount: 1
 image:
-  repository: nginx
-  tag: stable
+  repository: bitthalpatidar/my-repo
+  tag: "latest"
   pullPolicy: IfNotPresent
