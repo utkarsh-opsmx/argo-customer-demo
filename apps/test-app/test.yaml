@@ -1,21 +1,17 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: demo-test-db
-#   namespace: argocd
-# spec:
-#   project: default
-#   source:
-#     repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
-#     path: 'datas/test-app-db'
-#     targetRevision: HEAD
-#   destination:
-#     server: 'https://kubernetes.default.svc'
-#     namespace: test-db
-#   syncPolicy:
-#     syncOptions:
-#       - CreateNamespace=true
-#   # Optional: set a sync wave if necessary
-#   # annotations:
-#   #   argocd.argoproj.io/sync-wave: "1" 
-#   #  test commit without verified
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: image-updater-app
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/update-strategy: "latest" # or other strategies like "tag"
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
+    targetRevision: HEAD
+    path: 'datas/test'
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: argocd-kt
+  syncPolicy:
