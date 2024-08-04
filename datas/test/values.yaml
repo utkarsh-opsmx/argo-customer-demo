@@ -1,5 +1,5 @@
 replicaCount: 1
 image:
   repository: bitthalpatidar/my-repo
-  tag: "latest"
+  tag: latest
   pullPolicy: IfNotPresent
