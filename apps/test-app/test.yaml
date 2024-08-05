@@ -16,6 +16,6 @@ spec:
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd-kt
-  # syncPolicy:
-  #   syncOptions:
-  #     - CreateNamespace=true
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
