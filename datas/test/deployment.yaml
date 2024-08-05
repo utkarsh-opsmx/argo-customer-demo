@@ -16,6 +16,6 @@ spec:
         - name: nginx
           image: bitthalpatidar/my-repo:2
           imagePullPolicy: IfNotPresent
-          command: ["/usr/bin/bash", "-c", "while true; do echo mypod is running; sleep 5; done"]
+          command: ["/bin/sh", "-c", "while true; do echo mypod is running; sleep 5; done"]
       imagePullSecrets:
         - name: regcred
