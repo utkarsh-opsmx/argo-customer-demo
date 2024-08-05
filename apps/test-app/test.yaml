@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
   annotations:
     argocd-image-updater.argoproj.io/image-list: bitthalpatidar/bitthalpatidar/my-repo:1.2.*
-    argocd-image-updater.argoproj.io/my-repo.update-strategy: semver
+    argocd-image-updater.argoproj.io/my-repo.update-strategy: latest
     argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd-kt/git-creds3
 spec:
   project: default
