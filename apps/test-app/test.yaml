@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
   annotations:
     argocd-image-updater.argoproj.io/image-list: bitthalpatidar/my-repo:1.2.x
-    argocd-image-updater.argoproj.io/my-repo.update-strategy: semver
+    argocd-image-updater.argoproj.io/nginx.update-strategy: semver
     argocd-image-updater.argoproj.io/write-back-method: git
 spec:
   project: default
