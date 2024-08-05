@@ -4,3 +4,7 @@ metadata:
   name: arbitrary
 resources:
   - deployment.yaml
+images:
+  - name: bitthalpatidar/my-repo
+    newName: bitthalpatidar/my-repo
+    newTag: 2
