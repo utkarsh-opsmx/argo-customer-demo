@@ -4,7 +4,7 @@ metadata:
   name: image-updater-app
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: bitthalpatidar/my-repo:1.2.*
+    argocd-image-updater.argoproj.io/image-list: bitthalpatidar/my-repo:1.2.x
     argocd-image-updater.argoproj.io/my-repo.update-strategy: latest
     argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds-new
 spec:
