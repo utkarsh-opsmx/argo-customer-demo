@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: image-updater-deployment
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
       app: my-app
@@ -14,5 +14,6 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          image: bitthalpatidar/my-repo:latest
+          imagePullPolicy: IfNotPresent
           command: ["/bin/bash", "-c", "while true; do echo mypod is running; sleep 5; done"]
