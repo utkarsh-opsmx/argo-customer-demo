@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd-image-updater.argoproj.io/image-list: bitthalpatidar/bitthalpatidar/my-repo:1.2.*
     argocd-image-updater.argoproj.io/bitthalpatidar/my-repo.update-strategy: latest
-    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd-kt/git-creds3
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd-kt/git-creds-new
 spec:
   project: default
   source:
