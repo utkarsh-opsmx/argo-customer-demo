@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: postgresql-statefulset
+  name: {{ include "postgresql.fullname" . }}
   labels:
     app: {{ include "postgresql.name" . }}
     chart: {{ include "postgresql.chart" . }}
