@@ -2,4 +2,4 @@ replicaCount: 1
 images:
   - name: bitthalpatidar/my-repo
     newName: bitthalpatidar/my-repo
-    newTag: "1.2.1"
+    newTag: "1.2.2"
