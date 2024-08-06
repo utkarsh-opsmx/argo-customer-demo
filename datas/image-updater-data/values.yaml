@@ -1,8 +1,8 @@
 replicaCount: 1
-image:
-  repository: nginx
-  tag: stable
-  pullPolicy: IfNotPresent
+# image:
+#   repository: nginx
+#   tag: stable
+#   pullPolicy: IfNotPresent
 images:
   - name: bitthalpatidar/my-repo
     newName: bitthalpatidar/my-repo
