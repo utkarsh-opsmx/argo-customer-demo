@@ -14,5 +14,6 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: {{ .Values.images.newName }}:{{ .Values.images.newTag }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["/bin/sh", "-c", "while true; do echo mypod is running; sleep 5; done"]
