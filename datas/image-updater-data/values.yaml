@@ -1,9 +1,11 @@
 replicaCount: 1
-# image:
-#   repository: nginx
-#   tag: stable
-#   pullPolicy: IfNotPresent
+
+image:
+  repository: bitthalpatidar/my-repo
+  tag: 2  # initial tag in your deployment
+  pullPolicy: IfNotPresent
+
 images:
   - name: bitthalpatidar/my-repo
     newName: bitthalpatidar/my-repo
-    newTag: "1.2.2"
+    newTag: "1.2.2"  # desired tag for updating
