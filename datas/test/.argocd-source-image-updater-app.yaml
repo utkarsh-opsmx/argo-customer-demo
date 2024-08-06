@@ -1,0 +1,3 @@
+kustomize:
+  images:
+  - bitthalpatidar/my-repo:1.2.2
