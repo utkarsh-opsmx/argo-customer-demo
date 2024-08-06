@@ -1,10 +1,17 @@
-replicaCount: 1
-image:
-  repository: nginx
-  tag: stable
-  pullPolicy: IfNotPresent
-service:
-  type: ClusterIP
-  port: 80
-configMap:
-  log_level: INFO
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "postgresql.fullname" . }}
+  labels:
+    app: {{ include "postgresql.name" . }}
+    chart: {{ include "postgresql.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: postgres
+      protocol: TCP
+  selector:
+    app: {{ include "postgresql.name" . }}
