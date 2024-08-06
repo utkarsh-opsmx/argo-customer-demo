@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "postgresql.fullname" . }}
+  name: postgresql-service
   labels:
     app: {{ include "postgresql.name" . }}
     chart: {{ include "postgresql.chart" . }}
