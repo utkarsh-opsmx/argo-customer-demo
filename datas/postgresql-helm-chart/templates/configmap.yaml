@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: postgres-config
+  name: {{ include "postgresql.fullname" . }}-config
   labels:
     app: {{ include "postgresql.name" . }}
     chart: {{ include "postgresql.chart" . }}
@@ -13,4 +13,5 @@ data:
     # For example:
     max_connections = 100
     shared_buffers = 256MB
+
 
