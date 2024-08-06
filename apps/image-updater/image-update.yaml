@@ -11,7 +11,7 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
-    path: 'datas/test'
+    path: 'datas/image-updater-data'
     targetRevision: HEAD
     helm:
       valueFiles:
