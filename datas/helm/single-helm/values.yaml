@@ -1,20 +1,10 @@
 replicaCount: 1
-
 image:
-  repository: postgres
-  tag: "14"
+  repository: nginx
+  tag: stable
   pullPolicy: IfNotPresent
-
 service:
   type: ClusterIP
-  port: 5432
-  name: postgresql
-
-persistence:
-  enabled: true
-  storageClass: "standard"  # Default storage class for Minikube
-  accessModes:
-    - ReadWriteOnce
-  size: 8Gi
-
-resources: {}
+  port: 80
+configMap:
+  log_level: INFO
