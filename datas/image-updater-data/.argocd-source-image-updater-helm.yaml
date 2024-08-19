@@ -4,5 +4,5 @@ helm:
     value: bitthalpatidar/my-repo
     forcestring: true
   - name: image.tag
-    value: 1.2.5
+    value: 1.2.6
     forcestring: true
