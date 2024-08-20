@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-deployment-helm-source
+  name: git-generator2-deployment
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
