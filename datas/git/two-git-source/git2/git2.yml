@@ -7,8 +7,8 @@ data:
   fifth: five
   sixth: six
   seventh: seven
-  eigth: eight
-  ninth: nine
+  # eigth: eight
+  # ninth: nine
 kind: ConfigMap
 metadata:
   name: my-git-configmap
