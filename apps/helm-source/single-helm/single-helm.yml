@@ -6,11 +6,11 @@ metadata:
 spec:
   destination:
     namespace: argocd-kt
-    server: 'https://kubernetes.default.svc'
+    server: 'https://target-vcluster.gartner.opsmx.net:443'
   source:
     repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
     path: datas/helm/single-helm
-    targetRevision: HEAD
+    targetRevision: gartner
     helm:
       valueFiles:
         - values.yaml

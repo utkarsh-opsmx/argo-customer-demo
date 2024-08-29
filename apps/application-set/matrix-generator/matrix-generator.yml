@@ -28,7 +28,7 @@ spec:
         targetRevision: "main"
         path: "{{valuesPath}}"
       destination:
-        server: "https://kubernetes.default.svc"
+        server: "https://target-vcluster.gartner.opsmx.net:443"
         namespace: '{{appName}}'
       syncPolicy:
         automated:

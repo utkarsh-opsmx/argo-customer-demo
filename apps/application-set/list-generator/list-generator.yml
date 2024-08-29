@@ -9,11 +9,11 @@ spec:
         elements:
           - name: list-application-set-app1
             repoURL: https://github.com/bitthalpatidar/test-argo.git          #pod
-            targetRevision: HEAD
+            targetRevision: gartner
             path: datas/application-set-date/list-data/app1
           - name: list-application-set-app2
             repoURL: https://github.com/bitthalpatidar/test-argo.git           #service
-            targetRevision: HEAD
+            targetRevision: gartner
             path: datas/application-set-date/list-data/app2
   template:
     metadata:
@@ -25,7 +25,7 @@ spec:
         targetRevision: '{{targetRevision}}'
         path: '{{path}}'
       destination:
-        server: https://kubernetes.default.svc
+        server: https://target-vcluster.gartner.opsmx.net:443
         namespace: '{{name}}-namespace'
       syncPolicy:
         automated:
