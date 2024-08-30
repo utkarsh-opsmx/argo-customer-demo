@@ -25,7 +25,7 @@ spec:
       project: default
       source:
         repoURL: "https://github.com/bitthalpatidar/test-argo.git"
-        targetRevision: "main"
+        targetRevision: "gartner"
         path: "{{valuesPath}}"
       destination:
         server: "https://target-vcluster.gartner.opsmx.net:443"
