@@ -6,15 +6,15 @@ metadata:
 spec:
   project: default
   destination:
-    server: https://kubernetes.default.svc
+    server: https://target-vcluster.gartner.opsmx.net:443
     namespace: argocd-kt1
   sources:
     - repoURL: https://github.com/bitthalpatidar/argocd-task.git
       path: data/two-source/source-one
-      targetRevision: HEAD
+      targetRevision: gartner
     - repoURL: https://github.com/bitthalpatidar/test-argo.git
       path: datas/git/two-git-source/git1
-      targetRevision: HEAD
+      targetRevision: gartner
   syncPolicy:
     automated:
       prune: true

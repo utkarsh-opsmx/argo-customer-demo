@@ -12,12 +12,12 @@ spec:
   source:
     repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
     path: 'datas/image-updater-data'
-    targetRevision: HEAD
+    targetRevision: gartner
     helm:
       valueFiles:
         - values.yaml
   destination:
-    server: 'https://kubernetes.default.svc'
+    server: 'https://target-vcluster.gartner.opsmx.net:443'
     namespace: argocd-kt
   syncPolicy:
     syncOptions:
