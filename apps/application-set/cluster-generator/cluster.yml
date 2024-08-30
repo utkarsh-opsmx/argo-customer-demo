@@ -16,10 +16,10 @@ spec:
       project: default
       source:
         repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
-        targetRevision: 'main'
+        targetRevision: 'gartner'
         path: 'datas/helm/single-helm'  # Adjust the path to where your application manifests or Helm charts are located
       destination:
-        server: '{{server}}'
+        server: 'https://target-vcluster.gartner.opsmx.net:443'
         namespace: 'my-cluster'  # Adjust the namespace as needed
       syncPolicy:
         automated:
