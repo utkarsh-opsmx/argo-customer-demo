@@ -8,7 +8,7 @@ spec:
   generators:
     - git:                 
         repoURL: "https://github.com/bitthalpatidar/test-argo.git"
-        revision: "main"
+        revision: "gartner"
         directories:
           - path: "datas/application-set-date/git-data/*"
   template:
@@ -18,7 +18,7 @@ spec:
       project: default
       source:
         repoURL: "https://github.com/bitthalpatidar/test-argo.git"
-        targetRevision: "main"
+        targetRevision: "gartner"
         path: '{{path}}'
       destination:
         server: "https://target-vcluster.gartner.opsmx.net:443"
