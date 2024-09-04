@@ -18,7 +18,7 @@ spec:
       project: default
       source:
         repoURL: "https://github.com/OpsMx/argo-customer-demo.git"
-        targetRevision: "gartner"
+        targetRevision: "HEAD"
         path: '{{path}}'
       destination:
         server: "https://target-vcluster.gartner.opsmx.net:443"
