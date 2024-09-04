@@ -12,7 +12,7 @@ spec:
     - repoURL: https://github.com/bitthalpatidar/argocd-task.git
       path: data/two-source/source-one
       targetRevision: HEAD
-    - repoURL: https://github.com/bitthalpatidar/test-argo.git
+    - repoURL: https://github.com/OpsMx/argo-customer-demo.git
       path: datas/git/two-git-source/git1
       targetRevision: HEAD
   syncPolicy:

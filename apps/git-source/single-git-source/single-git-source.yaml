@@ -9,7 +9,7 @@ spec:
     server: 'https://target-vcluster.gartner.opsmx.net:443'
   source:
     path: datas/git/single-git-source
-    repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
+    repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
     targetRevision: HEAD
   project: default
   syncPolicy:
