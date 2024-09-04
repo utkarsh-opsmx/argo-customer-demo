@@ -24,7 +24,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: "https://github.com/bitthalpatidar/test-argo.git"
+        repoURL: "https://github.com/OpsMx/argo-customer-demo.git"
         targetRevision: "gartner"
         path: "{{valuesPath}}"
       destination:

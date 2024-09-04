@@ -7,8 +7,8 @@ metadata:
 spec:
   generators:
     - git:                 
-        repoURL: "https://github.com/bitthalpatidar/test-argo.git"
-        revision: "gartner"
+        repoURL: "https://github.com/OpsMx/argo-customer-demo.git"
+        revision: "HEAD"
         directories:
           - path: "datas/application-set-date/git-data/*"
   template:
@@ -17,7 +17,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: "https://github.com/bitthalpatidar/test-argo.git"
+        repoURL: "https://github.com/OpsMx/argo-customer-demo.git"
         targetRevision: "gartner"
         path: '{{path}}'
       destination:
