@@ -11,10 +11,10 @@ spec:
   sources:
     - repoURL: https://github.com/bitthalpatidar/argocd-task.git
       path: data/two-source/source-one
-      targetRevision: gartner
+      targetRevision: HEAD
     - repoURL: https://github.com/bitthalpatidar/test-argo.git
       path: datas/git/two-git-source/git1
-      targetRevision: gartner
+      targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true

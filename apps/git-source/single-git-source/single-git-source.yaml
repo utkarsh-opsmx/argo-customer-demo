@@ -10,7 +10,7 @@ spec:
   source:
     path: datas/git/single-git-source
     repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
-    targetRevision: gartner
+    targetRevision: HEAD
   project: default
   syncPolicy:
     automated:

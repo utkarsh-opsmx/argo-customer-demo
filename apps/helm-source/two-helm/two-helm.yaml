@@ -10,13 +10,13 @@ spec:
   sources:
     - repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
       path: datas/helm/dubble-helm/helm1
-      targetRevision: gartner
+      targetRevision: HEAD
       helm:
         valueFiles:
           - values.yaml
     - repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
       path: datas/helm/dubble-helm/helm2
-      targetRevision: gartner
+      targetRevision: HEAD
       helm:
         valueFiles:
           - values.yaml

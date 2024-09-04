@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: 'https://github.com/bitthalpatidar/test-argo.git'
     path: 'datas/test'
-    targetRevision: gartner
+    targetRevision: HEAD
   destination:
     server: 'https://target-vcluster.gartner.opsmx.net:443'
     namespace: argocd-kt
