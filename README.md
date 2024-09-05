@@ -14,11 +14,12 @@ Helm for managing Kubernetes applications (if applicable)
 
 Installation
 Clone the Repository
-
-bash
-Copy code
 git clone https://github.com/OpsMx/argo-customer-demo.git
 cd argo-customer-demo
+
+
+
+
 Install Argo CD
 
 Follow the official Argo CD installation guide to install Argo CD in your Kubernetes cluster.
