@@ -14,13 +14,11 @@ Repo Details
     In this repo have multiple applications like single git source, multiple git sources, applications, applicationset, single helm chart, multi helm chart, image-updater etc.
     Multiple Git Sources : The multiple-git-sources directory contains manifests for deploying applications from multiple Git repositories. Follow similar steps as described for 
     the Single Git Source, adjusting the paths and URLs accordingly.
-    
     Single Helm Chart : The single-helm-chart directory contains manifests for deploying an application using a single Helm chart.
-    
     Multiple Helm Charts: The multiple-helm-charts directory contains manifests for deploying applications using multiple Helm charts.
-    
     ApplicationSet : The applicationSet directory contains manifests for using Argo CD ApplicationSet to manage multiple applications.
     Image Updater: Automate updating Docker images in your applications.
+    
 
 Installation
 Clone the Repository
