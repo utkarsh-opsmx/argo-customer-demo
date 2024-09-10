@@ -17,7 +17,7 @@ spec:
       valueFiles:
         - values.yaml
   destination:
-    server: 'https://target-vcluster.gartner.opsmx.net:443'
+    server: 'https://kubernetes.default.svc'
     namespace: argocd-kt
   syncPolicy:
     syncOptions:
