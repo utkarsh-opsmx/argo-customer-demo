@@ -6,7 +6,7 @@ metadata:
 spec:
   destination:
     namespace: argocd-kt
-    server: 'https://target-vcluster.gartner.opsmx.net:443'
+    server: 'https://kubernetes.default.svc'
   sources:
     - repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
       path: datas/helm/dubble-helm/helm1
