@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
     path: 'datas/image-updater-data'
-    targetRevision: HEAD
+    targetRevision: test
     helm:
       valueFiles:
         - values.yaml

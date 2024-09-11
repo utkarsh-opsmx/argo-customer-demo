@@ -10,7 +10,7 @@ spec:
   source:
     path: datas/git/single-git-source
     repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
-    targetRevision: HEAD
+    targetRevision: test
   project: default
   syncPolicy:
     automated:

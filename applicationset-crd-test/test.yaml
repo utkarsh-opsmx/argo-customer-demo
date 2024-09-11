@@ -10,7 +10,7 @@ spec:
       - path: stack/kube-prometheus-stack/dev/config.json
       #- path: stack/kube-prometheus-stack/dev/config2.json
       repoURL: https://github.com/bitthalpatidar/forjpmc.git
-      revision: master
+      revision: test
   strategy:
     type: AllAtOnce
   syncPolicy:

@@ -10,13 +10,13 @@ spec:
   sources:
     - repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
       path: datas/helm/dubble-helm/helm1
-      targetRevision: HEAD
+      targetRevision: test
       helm:
         valueFiles:
           - values.yaml
     - repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
       path: datas/helm/dubble-helm/helm2
-      targetRevision: HEAD
+      targetRevision: test
       helm:
         valueFiles:
           - values.yaml

@@ -16,7 +16,7 @@ spec:
       generators:
       - git:
           repoURL: https://github.com/bitthalpatidar/forjpmc.git
-          revision: master
+          revision: test
           files:
           - path: "addons/cmapp/dev/config.json"
       - list:
@@ -40,7 +40,7 @@ spec:
       project: default
       source:
         repoURL: https://github.com/bitthalpatidar/forjpmc.git
-        targetRevision: HEAD
+        targetRevision: test
         path: configmap
       destination:
         server: '{{.url}}'

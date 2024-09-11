@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
     path: 'datas/test'
-    targetRevision: HEAD
+    targetRevision: test
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd-kt
