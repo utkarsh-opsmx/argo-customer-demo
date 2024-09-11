@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  myvalue: twosources
+  secondkey: secondvalue
+  thirdkey: thirdvalue
+  fourth: fourth-value
+kind: ConfigMap
+metadata:
+  name: twosources
