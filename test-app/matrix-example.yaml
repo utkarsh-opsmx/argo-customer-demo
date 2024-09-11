@@ -15,7 +15,7 @@ spec:
   - matrix:
       generators:
       - git:
-          repoURL: https://github.com/bitthalpatidar/forjpmc.git
+          repoURL: https://github.com/OpsMx/argo-customer-demo.git
           revision: test
           files:
           - path: "addons/cmapp/dev/config.json"
@@ -39,7 +39,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/bitthalpatidar/forjpmc.git
+        repoURL: https://github.com/OpsMx/argo-customer-demo.git
         targetRevision: test
         path: configmap
       destination:
