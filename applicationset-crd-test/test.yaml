@@ -7,9 +7,9 @@ spec:
   generators:
   - git:
       files:
-      - path: stack/kube-prometheus-stack/dev/config.json
+      - path: stack/config.json
       #- path: stack/kube-prometheus-stack/dev/config2.json
-      repoURL: https://github.com/bitthalpatidar/forjpmc.git
+      repoURL: https://github.com/OpsMx/argo-customer-demo.git
       revision: test
   strategy:
     type: AllAtOnce
