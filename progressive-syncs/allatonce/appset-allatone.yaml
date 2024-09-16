@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: stack-addons
+  name: appset-progressive-allatonce
   namespace: argocd
 spec:
   generators:
