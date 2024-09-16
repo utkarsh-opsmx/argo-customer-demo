@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: appsettest
+  name: appset-rolling-sync
   namespace: argocd
 spec:
   generators:
