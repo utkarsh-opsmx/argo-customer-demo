@@ -3,7 +3,7 @@
   "targetRevision": "test",
   "chart": "",
   "namespace": "test",
-  "name": "ecrapp-one-wave",
+  "name": "matrix-example-appset",
   "syncwave" : "one",
   "abcd": "",
   "ref": "test"
