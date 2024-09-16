@@ -39,7 +39,7 @@ spec:
     metadata:
       name: '{{.name}}-{{.values.namespace}}'
       labels:
-         app: jpmc
+         for: jpmc
     spec:
       project: default
       source:
