@@ -26,7 +26,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: argocd-app-status-sa
-    namespace: <your-namespace>  # The namespace where the ServiceAccount is created (same as the Job)
+    namespace: argocd
 ---
 apiVersion: batch/v1
 kind: Job
