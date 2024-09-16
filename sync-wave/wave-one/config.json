@@ -4,7 +4,7 @@
   "path": "sync-wave/wave-one",
   "chart": "",
   "namespace": "test",
-  "name": "-one",
+  "name": "one",
   "syncwave": "one",
   "abcd": "",
   "ref": "test"
