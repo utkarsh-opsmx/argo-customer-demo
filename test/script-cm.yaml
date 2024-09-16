@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-app-status-script
+  namespace: <your-namespace>  # Replace with your desired namespace
+data:
+  get-argocd-app-status.sh: |
+    #!/bin/bash
+
+    # Label to filter applications
+    LABEL_SELECTOR="your-label-key=your-label-value"
+
+    # Get the list of Argo CD applications with the specific label
+    applications=$(kubectl get applications -l $LABEL_SELECTOR -o jsonpath='{.items[*].metadata.name}')
+
+    if [ -z "$applications" ]; then
+      echo "No applications found with label: $LABEL_SELECTOR"
+      exit 1
+    fi
+
+    # Loop through each application and get the health and sync status
+    echo "Application Name | Health Status | Sync Status"
+    echo "------------------------------------------------"
+
+    for app in $applications; do
+      # Get health and sync status using argocd cli
+      health_status=$(argocd app get "$app" -o json | jq -r '.status.health.status')
+      sync_status=$(argocd app get "$app" -o json | jq -r '.status.sync.status')
+      
+      # Display the results
+      echo "$app | $health_status | $sync_status"
+    done
