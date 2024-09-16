@@ -39,7 +39,7 @@ spec:
       serviceAccountName: argocd-app-status-sa  # Use the ServiceAccount with permissions
       containers:
       - name: argocd-app-status
-        image: rancher/kubectl:latest  # Use the latest version of kubectl
+        image: bitnami/kubectl:latest
         command: ["/bin/bash", "/scripts/get-argocd-app-status.sh"]
         volumeMounts:
         - name: script-volume
