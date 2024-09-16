@@ -3,6 +3,8 @@ kind: ApplicationSet
 metadata:
   name: matrix-appset-syncpolicy-test
   namespace: argocd
+  labels:
+    app: jpmc 
 spec:
   syncPolicy:
     preserveResourcesOnDeletion: true               
@@ -36,6 +38,8 @@ spec:
   template:
     metadata:
       name: '{{.name}}-{{.values.namespace}}'
+      labels:
+         app: jpmc
     spec:
       project: default
       source:
