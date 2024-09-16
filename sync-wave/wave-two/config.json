@@ -1,5 +1,5 @@
 {
-  "repoURL": "https://github.com/bitthalpatidar/forjpmc.git",
+  "repoURL": "https://github.com/OpsMx/argo-customer-demo.git",
   "targetRevision": "test",
   "chart": "",
   "namespace": "test1",
