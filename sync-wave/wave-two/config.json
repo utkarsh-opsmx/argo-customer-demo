@@ -1,0 +1,10 @@
+{
+  "repoURL": "https://github.com/bitthalpatidar/forjpmc.git",
+  "targetRevision": "test",
+  "chart": "",
+  "namespace": "test1",
+  "name": "app-two-wave-sync",
+  "syncwave" : "two",
+  "abcd": "",
+  "ref": "test"
+}
