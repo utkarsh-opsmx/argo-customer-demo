@@ -1,0 +1,19 @@
+{
+  "repoURL": "https://github.com/OpsMx/argo-customer-demo.git",
+  "targetRevision": "test",
+  "chart": "",
+  "namespace": "test",
+  "name": "ecrapp-one-wave",
+  "syncwave" : "one",
+  "abcd": "",
+  "ref": "test"
+}
+
+
+
+
+
+
+
+
+
