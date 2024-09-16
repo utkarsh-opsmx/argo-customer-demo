@@ -26,7 +26,7 @@ spec:
               operator: In
               values:
                 - two
-          maxUpdate: 100%
+          maxUpdate: 10%
           
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
