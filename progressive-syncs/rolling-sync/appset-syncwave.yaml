@@ -32,7 +32,7 @@ spec:
   goTemplateOptions: ["missingkey=error"]
   template:
     metadata:
-      name: in-cluster-{{ .name}}
+      name: sync-wave-{{ .name}}
     spec:
       destination:
         name: in-cluster
