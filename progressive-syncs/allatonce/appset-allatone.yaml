@@ -21,7 +21,7 @@ spec:
     preserveResourcesOnDeletion: true
   template:
     metadata:
-      name: in-cluster-{{name}}
+      name: allatonce-sync-{{name}}
     spec:
       destination:
         name: in-cluster
