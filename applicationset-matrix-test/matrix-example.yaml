@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: matrix-example-appset
+  name: matrix-appset-syncpolicy-test
   namespace: argocd
 spec:
   syncPolicy:
