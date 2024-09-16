@@ -1,0 +1,61 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: appsettest
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      files:
+      - path: sync-wave/*/config.json
+      repoURL: https://github.com/OpsMx/argo-customer-demo.git
+      revision: test
+  strategy:
+    type: RollingSync
+    rollingSync:
+      steps:
+        - matchExpressions:
+            - key: syncWave
+              operator: In
+              values:
+                - one
+          maxUpdate: 100%
+        - matchExpressions:
+            - key: syncWave
+              operator: In
+              values:
+                - two
+          maxUpdate: 100%
+          
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  template:
+    metadata:
+      name: in-cluster-{{ .name}}
+    spec:
+      destination:
+        name: in-cluster
+        namespace: '{{ .namespace}}'
+      project: default
+      sources:
+        - repoURL: '{{ .repoURL}}'
+          targetRevision: '{{ .targetRevision}}'
+          chart: '{{ .chart}}'
+          ref: '{{ .ref}}'
+        - repoURL: https://github.com/OpsMx/argo-customer-demo.git
+          targetRevision: test
+          path: pod-cm
+      syncPolicy:
+        automated:
+          allowEmpty: true
+          prune: true
+        retry:
+          backoff:
+            duration: 60s
+            factor: 2
+            maxDuration: 2m
+          limit: 10
+        syncOptions:
+        - CreateNamespace=true
+        - ServerSideApply=true
