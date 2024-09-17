@@ -33,6 +33,8 @@ spec:
   template:
     metadata:
       name: sync-wave-{{ .name}}
+      labels:
+        for: jpmc
     spec:
       destination:
         name: in-cluster
