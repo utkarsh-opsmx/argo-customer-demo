@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: image-updater-app
   namespace: argocd
+  labels:
+     for: jpmc
   annotations:
     argocd-image-updater.argoproj.io/image-list: "bitthalpatidar/my-repo:1.2.*"
     argocd-image-updater.argoproj.io/my-repo.update-strategy: "latest"
