@@ -3,6 +3,8 @@ kind: ApplicationSet
 metadata:
   name: appset-progressive-allatonce
   namespace: argocd
+  labels:
+     for: jpmc
 spec:
   generators:
   - git:
