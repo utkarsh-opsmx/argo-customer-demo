@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: matrix-appicationset
+  namespace: argocd
+  labels:
+    for: jpmc
+spec:
+  destination:
+    namespace: test
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    directory:
+      recurse: true
+    path: applicationset-matrix-test
+    repoURL: https://github.com/OpsMx/argo-customer-demo
+    targetRevision: test
+  syncPolicy:
+    #automated: {}
+    syncOptions:
+     - CreateNamespace=true
