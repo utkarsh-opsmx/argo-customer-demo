@@ -14,6 +14,8 @@ spec:
   template:
     metadata:
       name: '{{path.basename}}'
+      labels:
+         for: jpmc
     spec:
       project: default
       source:
