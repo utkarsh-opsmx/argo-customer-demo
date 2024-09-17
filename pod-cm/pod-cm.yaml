@@ -52,7 +52,6 @@ spec:
       restartPolicy: OnFailure
 ---
 
-
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -73,20 +72,21 @@ data:
       exit 1
     fi
 
-
+    # Loop through each application and fetch details
     for app in $applications; do
-      if $app=='sync-wave-one' or $app=='sync-wave-two'
+      if [[ "$app" == "sync-wave-one" || "$app" == "sync-wave-two" ]]; then
 
-         appcreation=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.metadata.creationTimestamp}')
-         appdeployStartedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployStartedAt}')
-         appdeployedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployedAt}')
-         appfinishedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.finishedAt}')
-      
-      
-
-      # Display the results
-      echo "$app | $appcreation | $appdeployStartedAt | $appfinishedAt"
+        # Fetch required details using kubectl
+        appcreation=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.metadata.creationTimestamp}')
+        appdeployStartedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployStartedAt}')
+        appdeployedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployedAt}')
+        appfinishedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.finishedAt}')
+        
+        # Display the results
+        echo "$app | Creation Timestamp: $appcreation | Deploy Started At: $appdeployStartedAt | Deployed At: $appdeployedAt | Finished At: $appfinishedAt"
+      fi
     done
+
 
 ---
 apiVersion: batch/v1
