@@ -3,8 +3,6 @@ kind: ApplicationSet
 metadata:
   name: appset-progressive-allatonce
   namespace: argocd
-  labels:
-     for: jpmc
 spec:
   generators:
   - git:
@@ -24,6 +22,8 @@ spec:
   template:
     metadata:
       name: allatonce-sync-{{name}}
+      labels:
+         for: jpmc
     spec:
       destination:
         name: in-cluster
