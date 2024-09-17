@@ -34,3 +34,19 @@ spec:
     image: nginx:latest
     ports:
     - containerPort: 80
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: my-job
+spec:
+  template:
+    metadata:
+      labels:
+        app: my-job
+    spec:
+      containers:
+      - name: my-job-container
+        image: busybox
+        command: ["sh", "-c", "echo Hello Kubernetes! && sleep 30"]
+      restartPolicy: OnFailure
