@@ -18,15 +18,39 @@ spec:
         - matchExpressions:
             - key: syncWave
               operator: In
-              values:
+              values: 
+                - zero
+          maxUpdate: 100%
+        - matchExpressions:
+            - key: syncWave
+              operator: In
+              values: 
                 - one
           maxUpdate: 100%
         - matchExpressions:
             - key: syncWave
               operator: In
-              values:
+              values: 
                 - two
-          maxUpdate: 10%
+          maxUpdate: 100%
+        - matchExpressions:
+            - key: syncWave
+              operator: In
+              values: 
+                - three
+          maxUpdate: 100%
+        - matchExpressions:
+            - key: syncWave
+              operator: In
+              values: 
+                - four
+          maxUpdate: 100%
+        - matchExpressions:
+            - key: syncWave
+              operator: In
+              values: 
+                - five
+          maxUpdate: 100%
           
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
