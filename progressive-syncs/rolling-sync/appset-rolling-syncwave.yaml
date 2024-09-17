@@ -52,8 +52,8 @@ spec:
                 - five
           maxUpdate: 100%
           
-  goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
+  # goTemplate: true
+  # goTemplateOptions: ["missingkey=error"]
   template:
     metadata:
       name: sync-wave-{{ .name}}
