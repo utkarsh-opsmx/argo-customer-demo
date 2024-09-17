@@ -49,7 +49,7 @@ spec:
             - key: syncWave
               operator: In
               values: 
-                - five
+                - nine
           maxUpdate: 100%
           
   goTemplate: true
