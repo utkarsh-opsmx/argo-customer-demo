@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: single-helm-source1
   namespace: argocd
+  labels:
+    for: jpmc
 spec:
   destination:
     namespace: argocd-kt
