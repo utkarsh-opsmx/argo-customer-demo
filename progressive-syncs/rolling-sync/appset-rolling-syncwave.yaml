@@ -49,16 +49,17 @@ spec:
           targetRevision: test
           path: pod-cm
       syncPolicy:
-        automated:
-          allowEmpty: true
-          prune: true
-          selfHeal: true 
-        retry:
-          backoff:
-            duration: 60s
-            factor: 2
-            maxDuration: 2m
-          limit: 10
+        # automated:
+        #   allowEmpty: true
+        #   prune: true
+        #   selfHeal: true 
+        # retry:
+        #   backoff:
+        #     duration: 60s
+        #     factor: 2
+        #     maxDuration: 2m
+        #   limit: 10
+        automated: {}
         syncOptions:
         - CreateNamespace=true
         - ServerSideApply=true
