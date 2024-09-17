@@ -50,9 +50,9 @@ spec:
           path: pod-cm
       syncPolicy:
         automated:
-          allowEmpty: true
+          #allowEmpty: true
           prune: true
-        #   selfHeal: true 
+          selfHeal: true 
         # retry:
         #   backoff:
         #     duration: 60s
