@@ -49,7 +49,7 @@ spec:
       containers:
       - name: my-job-container
         image: busybox
-        command: ["sh", "-c", "echo Hello Kubernetes! && sleep 130"]
+        command: ["sh", "-c", "echo Hello Kubernetes! && sleep 120"]
       restartPolicy: OnFailure
 # ---
 
