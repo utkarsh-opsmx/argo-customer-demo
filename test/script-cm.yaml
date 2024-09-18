@@ -8,11 +8,12 @@ data:
     #!/bin/bash
 
     # Label to filter applications
-    LABEL_SELECTOR="for=jpmc"
+    #LABEL_SELECTOR="for=jpmc"
 
     # Get the list of Argo CD applications with the specific label using kubectl
-    applications=$(kubectl get applications.argoproj.io -l $LABEL_SELECTOR -o jsonpath='{.items[*].metadata.name}')
-
+    #applications=$(kubectl get applications.argoproj.io -l $LABEL_SELECTOR -o jsonpath='{.items[*].metadata.name}')
+    
+    applications=$(cat /script/applicationlist)
     if [ -z "$applications" ]; then
       echo "No applications found with label: $LABEL_SELECTOR"
       exit 1
