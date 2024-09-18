@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: applicationlist-configmap
+  namespace: default
+data:
+  applicationlist: |
+    allatonce-sync-stack
+    app-of-apps
+    appset-syncwave
+    git-appset
+    git-appset2
+    image-updater-app
+    image-updater-helm
+    list-application-set-app1
+    list-application-set-app2
+    matrix-appicationset
+    matrix-example-appset-ns1
+    progressive-syncs-allatonce
+    single-git-source
+    single-helm-source1
+    sync-wave-one
+    sync-wave-two
+    two-diff-sources
+    two-git-sources
+    two-helm-source
+    two-helm1-helm-chart-1
+    two-helm1-helm-chart-2
+    two-helm2-helm-chart-1
+    two-helm2-helm-chart-2
+    dummy
