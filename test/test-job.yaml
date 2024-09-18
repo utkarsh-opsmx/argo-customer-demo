@@ -46,7 +46,7 @@ spec:
           mountPath: /scripts
           readOnly: true
         - name: applicationlist
-          mountPath: /scripts
+          mountPath: /other-scripts
           readOnly: true
       restartPolicy: Never
       volumes:
