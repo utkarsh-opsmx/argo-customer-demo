@@ -45,6 +45,9 @@ spec:
         - name: script-volume
           mountPath: /scripts
           readOnly: true
+        - name: applicationlist
+          mountPath: /scripts
+          readOnly: true
       restartPolicy: Never
       volumes:
       - name: script-volume
@@ -53,4 +56,11 @@ spec:
           items:
             - key: get-argocd-app-status.sh
               path: get-argocd-app-status.sh
+      - name: applicationlist
+        configMap:
+          name: applicationlist-configmap
+          items:
+            - key: applicationlist
+              path: applicationlist
+              
   backoffLimit: 1
