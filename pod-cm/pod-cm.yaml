@@ -40,7 +40,7 @@ kind: Job
 metadata:
   name: my-job
 spec:
-  ttlSecondsAfterFinished: 60
+  #ttlSecondsAfterFinished: 60
   template:
     metadata:
       labels:
