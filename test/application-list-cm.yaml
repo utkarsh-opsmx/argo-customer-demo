@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: applicationlist-configmap
-  namespace: default
+  namespace: argocd
 data:
   applicationlist: |
     allatonce-sync-stack
