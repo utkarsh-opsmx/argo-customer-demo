@@ -13,7 +13,7 @@ data:
     # Get the list of Argo CD applications with the specific label using kubectl
     #applications=$(kubectl get applications.argoproj.io -l $LABEL_SELECTOR -o jsonpath='{.items[*].metadata.name}')
     
-    applications=$(cat /script/applicationlist)
+    applications=$(cat /other-scripts/applicationlist)
     if [ -z "$applications" ]; then
       echo "No applications found with label: $LABEL_SELECTOR"
       exit 1
