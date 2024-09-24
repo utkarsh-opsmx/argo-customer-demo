@@ -125,9 +125,10 @@ data:
         appdeployStartedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployStartedAt}')
         appdeployedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployedAt}')
         appfinishedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.finishedAt}')
+        appreconciledAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.reconciledAt}')
         
         # Display the results
-        echo "$app | Creation Timestamp: $appcreation | Deploy Started At: $appdeployStartedAt | Deployed At: $appdeployedAt | Finished At: $appfinishedAt"
+        echo "$app | Creation Timestamp: $appcreation | Deploy Started At: $appdeployStartedAt | Deployed At: $appdeployedAt | Finished At: $appfinishedAt | reconciledAt : $reconciledAt"
       fi
     done
 
