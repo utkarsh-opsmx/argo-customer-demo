@@ -78,7 +78,7 @@ data:
 
     # Loop through each application and fetch details
     for app in $applications; do
-      if [[ "$app" == "sync-wave-one" || "$app" == "sync-wave-two"]]; then
+      if [[ "$app" == "sync-wave-one" || "$app" == "sync-wave-two" ]]; then
 
         # Fetch required details using kubectl
         appcreation=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.metadata.creationTimestamp}')
