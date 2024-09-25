@@ -154,12 +154,12 @@ metadata:
   name: argocd-rolling-sync-job
   namespace: argocd
   annotations:
-    argocd.argoproj.io/hook: PostSync  # Run the job after sync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded  # Delete the job after success
+    argocd.argoproj.io/hook: PostSync
+    #argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
     spec:
-      serviceAccountName: argocd-app-status-sa  # Ensure ServiceAccount has proper permissions
+      serviceAccountName: argocd-app-status-sa  # Use the ServiceAccount with permissions
       containers:
       - name: argocd-app-status
         image: bitnami/kubectl:latest
@@ -168,8 +168,6 @@ spec:
         - name: script-volume
           mountPath: /scripts
           readOnly: true
-        - name: output-volume
-          mountPath: /output
       restartPolicy: Never
       volumes:
       - name: script-volume
@@ -178,7 +176,5 @@ spec:
           items:
             - key: get-argocd-app-status1.sh
               path: get-argocd-app-status1.sh
-      - name: output-volume
-        emptyDir: {}  # Writable volume for output files
   backoffLimit: 1
 
