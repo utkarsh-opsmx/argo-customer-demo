@@ -118,26 +118,16 @@ data:
     # Loop through each application and fetch details
     for app in $applications; do
       if [[ "$app" == "sync-wave-one" || "$app" == "sync-wave-two" ]]; then
-    
-        # Fetch status information using kubectl
-        healthStatus=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.health.status}')
-        syncStatus=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.sync.status}')
-        syncResult=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.phase}')
-    
-        # Check if the application is Healthy, Synced, and Last Sync OK
-        if [[ "$healthStatus" == "Healthy" && "$syncStatus" == "Synced" && "$syncResult" == "Succeeded" ]]; then
-          # Fetch more details after checking conditions
-          appcreation=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.metadata.creationTimestamp}')
-          appdeployStartedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployStartedAt}')
-          appdeployedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployedAt}')
-          appfinishedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.finishedAt}')
-          appreconciledAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.reconciledAt}')
-          
-          # Store the results in the output file
-          echo "$app | Creation Timestamp: $appcreation | Deploy Started At: $appdeployStartedAt | Deployed At: $appdeployedAt | Finished At: $appfinishedAt | Reconciled At : $appreconciledAt" >> $OUTPUT_FILE
-        else
-          echo "$app is not yet Healthy and Synced. Current status - Health: $healthStatus, Sync: $syncStatus, Result: $syncResult"
-        fi
+
+        # Fetch required details using kubectl
+        appcreation=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.metadata.creationTimestamp}')
+        appdeployStartedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployStartedAt}')
+        appdeployedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployedAt}')
+        appfinishedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.finishedAt}')
+        appreconciledAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.reconciledAt}')
+        
+        # Display the results
+        echo "$app | Creation Timestamp: $appcreation | Deploy Started At: $appdeployStartedAt | Deployed At: $appdeployedAt | Finished At: $appfinishedAt | reconciledAt : $appreconciledAt"
       fi
     done
 
