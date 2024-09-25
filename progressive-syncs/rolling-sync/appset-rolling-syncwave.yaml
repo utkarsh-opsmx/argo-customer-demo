@@ -103,34 +103,48 @@ metadata:
   namespace: argocd
 data:
   get-argocd-app-status1.sh: |
-    #!/bin/bash
-
-    # Label to filter applications
-    LABEL_SELECTOR="for=jpmc"
-
-    # Get the list of Argo CD applications with the specific label using kubectl
-    applications=$(kubectl get applications.argoproj.io -l $LABEL_SELECTOR -o jsonpath='{.items[*].metadata.name}')
-
-    if [ -z "$applications" ]; then
-      echo "No applications found with label: $LABEL_SELECTOR"
-      exit 1
-    fi
-
-    # Loop through each application and fetch details
-    for app in $applications; do
-      if [[ "$app" == "sync-wave-one" || "$app" == "sync-wave-two" ]]; then
-
-        # Fetch required details using kubectl
-        appcreation=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.metadata.creationTimestamp}')
-        appdeployStartedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployStartedAt}')
-        appdeployedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployedAt}')
-        appfinishedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.finishedAt}')
-        appreconciledAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.reconciledAt}')
-        
-        # Display the results
-        echo "$app | Creation Timestamp: $appcreation | Deploy Started At: $appdeployStartedAt | Deployed At: $appdeployedAt | Finished At: $appfinishedAt | reconciledAt : $appreconciledAt"
+      #!/bin/bash
+      # Label to filter applications
+      LABEL_SELECTOR="for=jpmc"
+      
+      # Get the list of Argo CD applications with the specific label using kubectl
+      applications=$(kubectl get applications.argoproj.io -l $LABEL_SELECTOR -o jsonpath='{.items[*].metadata.name}')
+      
+      if [ -z "$applications" ]; then
+        echo "No applications found with label: $LABEL_SELECTOR"
+        exit 1
       fi
-    done
+      
+      # Create output file
+      OUTPUT_FILE="/output/app_sync_details.txt"
+      echo "Application Sync Details" > $OUTPUT_FILE
+      
+      # Loop through each application and fetch details
+      for app in $applications; do
+        if [[ "$app" == "sync-wave-one" || "$app" == "sync-wave-two" ]]; then
+      
+          # Fetch status information using kubectl
+          healthStatus=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.health.status}')
+          syncStatus=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.sync.status}')
+          syncResult=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.phase}')
+      
+          # Check if the application is Healthy, Synced, and Last Sync OK
+          if [[ "$healthStatus" == "Healthy" && "$syncStatus" == "Synced" && "$syncResult" == "Succeeded" ]]; then
+            # Fetch more details after checking conditions
+            appcreation=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.metadata.creationTimestamp}')
+            appdeployStartedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployStartedAt}')
+            appdeployedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployedAt}')
+            appfinishedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.finishedAt}')
+            appreconciledAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.reconciledAt}')
+            
+            # Store the results in the output file
+            echo "$app | Creation Timestamp: $appcreation | Deploy Started At: $appdeployStartedAt | Deployed At: $appdeployedAt | Finished At: $appfinishedAt | Reconciled At : $appreconciledAt" >> $OUTPUT_FILE
+          else
+            echo "$app is not yet Healthy and Synced. Current status - Health: $healthStatus, Sync: $syncStatus, Result: $syncResult"
+          fi
+        fi
+      done
+
 
 
 ---
@@ -140,12 +154,12 @@ metadata:
   name: argocd-rolling-sync-job
   namespace: argocd
   annotations:
-    argocd.argoproj.io/hook: PostSync
-    #argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/hook: PostSync  # Run the job after sync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded  # Delete the job after success
 spec:
   template:
     spec:
-      serviceAccountName: argocd-app-status-sa  # Use the ServiceAccount with permissions
+      serviceAccountName: argocd-app-status-sa  # Ensure ServiceAccount has proper permissions
       containers:
       - name: argocd-app-status
         image: bitnami/kubectl:latest
@@ -154,6 +168,8 @@ spec:
         - name: script-volume
           mountPath: /scripts
           readOnly: true
+        - name: output-volume
+          mountPath: /output
       restartPolicy: Never
       volumes:
       - name: script-volume
@@ -162,4 +178,7 @@ spec:
           items:
             - key: get-argocd-app-status1.sh
               path: get-argocd-app-status1.sh
+      - name: output-volume
+        emptyDir: {}  # Writable volume for output files
   backoffLimit: 1
+
