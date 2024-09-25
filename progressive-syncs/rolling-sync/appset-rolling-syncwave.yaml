@@ -94,73 +94,73 @@ spec:
       #   - CreateNamespace=true
       #   - ServerSideApply=true
         
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: app-rolling-sync-check
-  namespace: argocd
-data:
-  get-argocd-app-status1.sh: |
-    #!/bin/bash
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: app-rolling-sync-check
+#   namespace: argocd
+# data:
+#   get-argocd-app-status1.sh: |
+#     #!/bin/bash
 
-    # Label to filter applications
-    LABEL_SELECTOR="for=jpmc"
+#     # Label to filter applications
+#     LABEL_SELECTOR="for=jpmc"
 
-    # Get the list of Argo CD applications with the specific label using kubectl
-    applications=$(kubectl get applications.argoproj.io -l $LABEL_SELECTOR -o jsonpath='{.items[*].metadata.name}')
+#     # Get the list of Argo CD applications with the specific label using kubectl
+#     applications=$(kubectl get applications.argoproj.io -l $LABEL_SELECTOR -o jsonpath='{.items[*].metadata.name}')
 
-    if [ -z "$applications" ]; then
-      echo "No applications found with label: $LABEL_SELECTOR"
-      exit 1
-    fi
+#     if [ -z "$applications" ]; then
+#       echo "No applications found with label: $LABEL_SELECTOR"
+#       exit 1
+#     fi
 
-    # Loop through each application and fetch details
-    for app in $applications; do
-      if [[ "$app" == "sync-wave-one" || "$app" == "sync-wave-two" ]]; then
+#     # Loop through each application and fetch details
+#     for app in $applications; do
+#       if [[ "$app" == "sync-wave-one" || "$app" == "sync-wave-two" ]]; then
 
-        # Fetch required details using kubectl
-        appcreation=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.metadata.creationTimestamp}')
-        appdeployStartedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployStartedAt}')
-        appdeployedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployedAt}')
-        appfinishedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.finishedAt}')
-        appreconciledAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.reconciledAt}')
+#         # Fetch required details using kubectl
+#         appcreation=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.metadata.creationTimestamp}')
+#         appdeployStartedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployStartedAt}')
+#         appdeployedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployedAt}')
+#         appfinishedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.finishedAt}')
+#         appreconciledAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.reconciledAt}')
         
-        # Display the results
-        echo "$app | Creation Timestamp: $appcreation | Deploy Started At: $appdeployStartedAt | Deployed At: $appdeployedAt | Finished At: $appfinishedAt | reconciledAt : $appreconciledAt"
-      fi
-    done
+#         # Display the results
+#         echo "$app | Creation Timestamp: $appcreation | Deploy Started At: $appdeployStartedAt | Deployed At: $appdeployedAt | Finished At: $appfinishedAt | reconciledAt : $appreconciledAt"
+#       fi
+#     done
 
 
 
----
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: argocd-rolling-sync-job
-  namespace: argocd
-  annotations:
-    argocd.argoproj.io/hook: PostSync
-    #argocd.argoproj.io/hook-delete-policy: HookSucceeded
-spec:
-  template:
-    spec:
-      serviceAccountName: argocd-app-status-sa  # Use the ServiceAccount with permissions
-      containers:
-      - name: argocd-app-status
-        image: bitnami/kubectl:latest
-        command: ["/bin/bash", "/scripts/get-argocd-app-status1.sh"]
-        volumeMounts:
-        - name: script-volume
-          mountPath: /scripts
-          readOnly: true
-      restartPolicy: Never
-      volumes:
-      - name: script-volume
-        configMap:
-          name: app-rolling-sync-check
-          items:
-            - key: get-argocd-app-status1.sh
-              path: get-argocd-app-status1.sh
-  backoffLimit: 1
+# ---
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: argocd-rolling-sync-job
+#   namespace: argocd
+#   annotations:
+#     argocd.argoproj.io/hook: PostSync
+#     #argocd.argoproj.io/hook-delete-policy: HookSucceeded
+# spec:
+#   template:
+#     spec:
+#       serviceAccountName: argocd-app-status-sa  # Use the ServiceAccount with permissions
+#       containers:
+#       - name: argocd-app-status
+#         image: bitnami/kubectl:latest
+#         command: ["/bin/bash", "/scripts/get-argocd-app-status1.sh"]
+#         volumeMounts:
+#         - name: script-volume
+#           mountPath: /scripts
+#           readOnly: true
+#       restartPolicy: Never
+#       volumes:
+#       - name: script-volume
+#         configMap:
+#           name: app-rolling-sync-check
+#           items:
+#             - key: get-argocd-app-status1.sh
+#               path: get-argocd-app-status1.sh
+#   backoffLimit: 1
 
