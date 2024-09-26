@@ -166,30 +166,4 @@ spec:
   backoffLimit: 1
 
 
----
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: enable-auto-sync-job
-  namespace: argocd
-  annotations:
-    argocd.argoproj.io/hook: PostSync
-    #argocd.argoproj.io/hook-delete-policy: HookSucceeded
-spec:
-  template:
-    spec:
-      serviceAccountName: argocd-app-status-sa  # Ensure this ServiceAccount has appropriate permissions
-      containers:
-      - name: enable-auto-sync
-        image: bitnami/kubectl:latest
-        command: ["/bin/sh", "-c"]
-        args:
-          - |
-            applications=$(kubectl get applications.argoproj.io -l for=jpmc -o jsonpath='{.items[*].metadata.name}')
-            for app in $applications; do
-              if [[ "$app" == "sync-wave-one" || "$app" == "sync-wave-two" ]]; then
-                kubectl patch application.argoproj.io $app --type merge -p '{"spec": {"syncPolicy": {"automated": {"prune": true, "selfHeal": true}}}}'
-              fi
-            done
-      restartPolicy: Never
-  backoffLimit: 1
+
