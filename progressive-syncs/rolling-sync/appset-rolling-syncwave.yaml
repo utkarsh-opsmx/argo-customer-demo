@@ -187,7 +187,9 @@ spec:
           - |
             applications=$(kubectl get applications.argoproj.io -l for=jpmc -o jsonpath='{.items[*].metadata.name}')
             for app in $applications; do
-              kubectl patch application.argoproj.io $app --type merge -p '{"spec": {"syncPolicy": {"automated": {"prune": true, "selfHeal": true}}}}'
+              if [[ "$app" == "sync-wave-one" || "$app" == "sync-wave-two" ]]; then
+                kubectl patch application.argoproj.io $app --type merge -p '{"spec": {"syncPolicy": {"automated": {"prune": true, "selfHeal": true}}}}'
+              fi
             done
       restartPolicy: Never
   backoffLimit: 1
