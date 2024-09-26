@@ -133,7 +133,8 @@ data:
 
         # Check if the status is as expected
         if [[ "$healthStatus" == "Healthy" && "$syncStatus" == "Synced" && "$lastSyncResult" == "Succeeded" ]]; then
-          echo "Application $app is Healthy, Synced, and Last Sync is OK"
+          completionTime=$(date '+%Y-%m-%d %H:%M:%S')
+           echo "Application $app is Healthy, Synced, and Last Sync is OK at $completionTime"
         else
           echo "Application $app is not in the desired state. Health: $healthStatus, Sync: $syncStatus, Last Sync: $lastSyncResult"
           all_synced=false
