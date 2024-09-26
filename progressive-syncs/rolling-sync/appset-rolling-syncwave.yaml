@@ -124,6 +124,7 @@ data:
 
       for app in "${APPLICATIONS[@]}"; do
         # Fetch application statuses
+        kubectl patch application.argoproj.io "$app" --type merge -p '{"spec": {"syncPolicy": {"automated": {"prune": true, "selfHeal": true}}}}'
         healthStatus=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.health.status}' 2>/dev/null)
         syncStatus=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.sync.status}' 2>/dev/null)
         lastSyncResult=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.phase}' 2>/dev/null)
