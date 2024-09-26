@@ -4,6 +4,9 @@ kind: ApplicationSet
 metadata:
   name: appset-rolling-sync
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    #argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   generators:
   - git:
