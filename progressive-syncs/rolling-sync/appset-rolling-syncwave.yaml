@@ -125,9 +125,9 @@ data:
       for app in "${APPLICATIONS[@]}"; do
         # Fetch application statuses
         kubectl patch application.argoproj.io "$app" --type merge -p '{"spec": {"syncPolicy": {"automated": {"prune": true, "selfHeal": true}}}}'
-        healthStatus=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.health.status}' 2>/dev/null)
-        syncStatus=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.sync.status}' 2>/dev/null)
-        lastSyncResult=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.phase}' 2>/dev/null)
+        healthStatus=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.health.status}')
+        syncStatus=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.sync.status}')
+        lastSyncResult=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.phase}')
 
         # Check if the status is as expected
         if [[ "$healthStatus" == "Healthy" && "$syncStatus" == "Synced" && "$lastSyncResult" == "Succeeded" ]]; then
@@ -137,6 +137,15 @@ data:
           all_synced=false
           break
         fi
+        # Fetch required details using kubectl
+        appcreation=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.metadata.creationTimestamp}')
+        appdeployStartedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployStartedAt}')
+        appdeployedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployedAt}')
+        appfinishedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.finishedAt}')
+        appreconciledAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.reconciledAt}')
+        
+        # Display the results
+        echo "$app | Creation Timestamp: $appcreation | Deploy Started At: $appdeployStartedAt | Deployed At: $appdeployedAt | Finished At: $appfinishedAt | Reconciled At: $appreconciledAt"
       done
 
       # If all applications are in the desired state, exit the loop
@@ -159,7 +168,7 @@ metadata:
   namespace: argocd
   annotations:
     argocd.argoproj.io/hook: PostSync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    #argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
     spec:
