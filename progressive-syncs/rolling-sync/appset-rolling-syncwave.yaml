@@ -119,12 +119,14 @@ data:
     APPLICATIONS=("sync-wave-one" "sync-wave-two")
 
     # Check for status of each application until all conditions are met
+    kubectl patch application.argoproj.io sync-wave-one sync-wave-two --type merge -p '{"spec": {"syncPolicy": {"automated": {"prune": true, "selfHeal": true}}}}'
+    
     while true; do
       all_synced=true
 
       for app in "${APPLICATIONS[@]}"; do
         # Fetch application statuses
-        kubectl patch application.argoproj.io "$app" --type merge -p '{"spec": {"syncPolicy": {"automated": {"prune": true, "selfHeal": true}}}}'
+        
         healthStatus=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.health.status}')
         syncStatus=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.sync.status}')
         lastSyncResult=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.phase}')
