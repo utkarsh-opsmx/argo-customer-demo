@@ -1,10 +1,8 @@
-
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: appset-rolling-sync
   namespace: argocd
-
 spec:
   generators:
   - git:
@@ -52,7 +50,7 @@ spec:
               values: 
                 - nine
           maxUpdate: 100%
-          
+
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   template:
@@ -80,20 +78,6 @@ spec:
         syncOptions:
           - CreateNamespace=true
           - ServerSideApply=true
-      # syncPolicy:
-      #   automated:
-      #     #allowEmpty: true
-      #     prune: true
-      #     selfHeal: true 
-      #   retry:
-      #     backoff:
-      #       duration: 60s
-      #       factor: 2
-      #       maxDuration: 2m
-      #     limit: 10
-      #   syncOptions:
-      #   - CreateNamespace=true
-      #   - ServerSideApply=true
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -131,38 +115,40 @@ data:
   get-argocd-app-status1.sh: |
     #!/bin/bash
 
-    # Label to filter applications
-    LABEL_SELECTOR="for=jpmc"
+    # Define the applications to monitor
+    APPLICATIONS=("sync-wave-one" "sync-wave-two")
 
-    # Get the list of Argo CD applications with the specific label using kubectl
-    applications=$(kubectl get applications.argoproj.io -l $LABEL_SELECTOR -o jsonpath='{.items[*].metadata.name}')
+    # Check for status of each application until all conditions are met
+    while true; do
+      all_synced=true
 
-    if [ -z "$applications" ]; then
-      echo "No applications found with label: $LABEL_SELECTOR"
-      exit 1
-    fi
+      for app in "${APPLICATIONS[@]}"; do
+        # Fetch application statuses
+        healthStatus=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.health.status}' 2>/dev/null)
+        syncStatus=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.sync.status}' 2>/dev/null)
+        lastSyncResult=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.phase}' 2>/dev/null)
 
-    # Loop through each application and fetch details
-    for app in $applications; do
-      if [[ "$app" == "sync-wave-one" || "$app" == "sync-wave-two" ]]; then
-        # Enable auto-sync for the application
-        echo "Enabling auto-sync for application: $app"
-        kubectl patch application.argoproj.io "$app" --type merge -p '{"spec": {"syncPolicy": {"automated": {"prune": true, "selfHeal": true}}}}'
+        # Check if the status is as expected
+        if [[ "$healthStatus" == "Healthy" && "$syncStatus" == "Synced" && "$lastSyncResult" == "Succeeded" ]]; then
+          echo "Application $app is Healthy, Synced, and Last Sync is OK"
+        else
+          echo "Application $app is not in the desired state. Health: $healthStatus, Sync: $syncStatus, Last Sync: $lastSyncResult"
+          all_synced=false
+          break
+        fi
+      done
 
-        # Fetch required details using kubectl
-        appcreation=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.metadata.creationTimestamp}')
-        appdeployStartedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployStartedAt}')
-        appdeployedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployedAt}')
-        appfinishedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.finishedAt}')
-        appreconciledAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.reconciledAt}')
-        
-        # Display the results
-        echo "$app | Creation Timestamp: $appcreation | Deploy Started At: $appdeployStartedAt | Deployed At: $appdeployedAt | Finished At: $appfinishedAt | Reconciled At: $appreconciledAt"
+      # If all applications are in the desired state, exit the loop
+      if [ "$all_synced" == true ]; then
+        echo "All applications are in the desired state."
+        break
+      else
+        echo "Waiting for applications to reach the desired state..."
       fi
+
+      # Wait before checking again
+      sleep 30
     done
-
-
-
 
 ---
 apiVersion: batch/v1
@@ -172,11 +158,11 @@ metadata:
   namespace: argocd
   annotations:
     argocd.argoproj.io/hook: PostSync
-    #argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
     spec:
-      serviceAccountName: argocd-app-status-sa  # Use the ServiceAccount with permissions
+      serviceAccountName: argocd-app-status-sa
       containers:
       - name: argocd-app-status
         image: bitnami/kubectl:latest
@@ -194,4 +180,3 @@ spec:
             - key: get-argocd-app-status1.sh
               path: get-argocd-app-status1.sh
   backoffLimit: 1
-
