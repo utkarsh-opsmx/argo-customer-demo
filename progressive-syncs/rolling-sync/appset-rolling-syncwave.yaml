@@ -4,9 +4,7 @@ kind: ApplicationSet
 metadata:
   name: appset-rolling-sync
   namespace: argocd
-  annotations:
-    argocd.argoproj.io/hook: PostSync
-    #argocd.argoproj.io/hook-delete-policy: HookSucceeded
+
 spec:
   generators:
   - git:
@@ -121,7 +119,7 @@ data:
     # Loop through each application and fetch details
     for app in $applications; do
       if [[ "$app" == "sync-wave-one" || "$app" == "sync-wave-two" ]]; then
-
+        kubectl patch application.argoproj.io $app --type merge -p '{"spec": {"syncPolicy": {"automated": {"prune": true, "selfHeal": true}}}}'
         # Fetch required details using kubectl
         appcreation=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.metadata.creationTimestamp}')
         appdeployStartedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployStartedAt}')
