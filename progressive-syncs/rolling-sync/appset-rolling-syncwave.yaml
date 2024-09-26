@@ -119,7 +119,10 @@ data:
     # Loop through each application and fetch details
     for app in $applications; do
       if [[ "$app" == "sync-wave-one" || "$app" == "sync-wave-two" ]]; then
-        #kubectl patch application.argoproj.io $app --type merge -p '{"spec": {"syncPolicy": {"automated": {"prune": true, "selfHeal": true}}}}'
+        # Enable auto-sync for the application
+        echo "Enabling auto-sync for application: $app"
+        kubectl patch application.argoproj.io "$app" --type merge -p '{"spec": {"syncPolicy": {"automated": {"prune": true, "selfHeal": true}}}}'
+
         # Fetch required details using kubectl
         appcreation=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.metadata.creationTimestamp}')
         appdeployStartedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployStartedAt}')
@@ -128,9 +131,10 @@ data:
         appreconciledAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.reconciledAt}')
         
         # Display the results
-        echo "$app | Creation Timestamp: $appcreation | Deploy Started At: $appdeployStartedAt | Deployed At: $appdeployedAt | Finished At: $appfinishedAt | reconciledAt : $appreconciledAt"
+        echo "$app | Creation Timestamp: $appcreation | Deploy Started At: $appdeployStartedAt | Deployed At: $appdeployedAt | Finished At: $appfinishedAt | Reconciled At: $appreconciledAt"
       fi
     done
+
 
 
 
