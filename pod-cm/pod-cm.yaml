@@ -22,31 +22,6 @@ spec:
     ports:
     - containerPort: 80
 ---
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  namespace: argocd
-  name: argocd-app-patch-role
-rules:
-  - apiGroups: ["argoproj.io"]
-    resources: ["applications"]
-    verbs: ["patch", "update"]
-
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  namespace: argocd
-  name: argocd-app-patch-rolebinding
-subjects:
-  - kind: ServiceAccount
-    name: argocd-app-status-sa
-    namespace: argocd
-roleRef:
-  kind: Role
-  name: argocd-app-patch-role
-  apiGroup: rbac.authorization.k8s.io
 
 
 # ---
