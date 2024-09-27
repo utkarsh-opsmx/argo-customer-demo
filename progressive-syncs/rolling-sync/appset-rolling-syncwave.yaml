@@ -104,7 +104,6 @@ spec:
 #   kind: Role
 #   name: argocd-app-patch-role
 #   apiGroup: rbac.authorization.k8s.io
-
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -112,7 +111,7 @@ metadata:
   name: app-rolling-sync-check
   namespace: argocd
 data:
-  get-argocd-app-status1.sh: |
+  get-argocd-app-rolling.sh: |
     #!/bin/bash
 
     # Define the applications to monitor
@@ -177,19 +176,19 @@ spec:
     spec:
       serviceAccountName: argocd-app-status-sa
       containers:
-      - name: argocd-app-status
+      - name: argocd-app-rolling-sync
         image: bitnami/kubectl:latest
-        command: ["/bin/bash", "/scripts/get-argocd-app-status1.sh"]
+        command: ["/bin/bash", "/scripts/get-argocd-app-rolling.sh"]
         volumeMounts:
-        - name: script-volume
-          mountPath: /scripts
+        - name: script-volume-rolling
+          mountPath: /rolling-scripts
           readOnly: true
       restartPolicy: Never
       volumes:
-      - name: script-volume
+      - name: script-volume-rolling
         configMap:
           name: app-rolling-sync-check
           items:
-            - key: get-argocd-app-status1.sh
-              path: get-argocd-app-status1.sh
+            - key: get-argocd-app-rolling.sh
+              path: get-argocd-app-rolling.sh
   backoffLimit: 1
