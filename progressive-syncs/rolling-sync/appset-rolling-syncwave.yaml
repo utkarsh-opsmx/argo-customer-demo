@@ -178,7 +178,7 @@ spec:
       containers:
       - name: argocd-app-rolling-sync
         image: bitnami/kubectl:latest
-        command: ["/bin/bash", "/scripts/get-argocd-app-rolling.sh"]
+        command: ["/bin/bash", "/rolling-scripts/get-argocd-app-rolling.sh"]
         volumeMounts:
         - name: script-volume-rolling
           mountPath: /rolling-scripts
