@@ -88,7 +88,7 @@ metadata:
 rules:
   - apiGroups: ["argoproj.io"]
     resources: ["applications"]
-    verbs: ["patch", "update"]
+    verbs: ["patch", "update", "get", "list", "watch"]
 ---
 apiVersion: v1
 kind: ServiceAccount
