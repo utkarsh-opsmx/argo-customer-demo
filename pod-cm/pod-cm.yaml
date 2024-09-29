@@ -42,9 +42,9 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: my-job
-  annotations:
-    argocd.argoproj.io/hook: PostSync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+  # annotations:
+  #   argocd.argoproj.io/hook: PostSync
+  #   argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   #ttlSecondsAfterFinished: 60
   template:
