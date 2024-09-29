@@ -58,6 +58,8 @@ spec:
       name: sync-wave-{{ .name}}
       labels:
         for: jpmc
+      annotations:
+        argocd.argoproj.io/sync-wave: "{{ .syncwave }}"
     spec:
       destination:
         name: in-cluster
