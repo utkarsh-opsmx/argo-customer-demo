@@ -3,7 +3,6 @@ kind: ConfigMap
 metadata:
   name: my-configmap
 data:
-  # Key-value pairs
   APP_ENV: "production"
   APP_DEBUG: "false"
   APP_PORT: "8080"
@@ -55,7 +54,7 @@ spec:
       containers:
       - name: my-job-container
         image: busybox
-        command: ["sh", "-c", "echo Hello Kubernetes! && sleep 240"]
+        command: ["sh", "-c", "echo Hello Kubernetes! && sleep 120"]
       restartPolicy: OnFailure
 
 ---
