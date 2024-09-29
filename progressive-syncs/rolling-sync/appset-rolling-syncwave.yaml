@@ -21,7 +21,7 @@ spec:
                 - zero
           maxUpdate: 100%
         - matchExpressions:
-            - key: syncWave
+            - key: syncwave
               operator: In
               values: 
                 - one
@@ -45,7 +45,7 @@ spec:
                 - four
           maxUpdate: 100%
         - matchExpressions:
-            - key: syncWave
+            - key: syncwave
               operator: In
               values: 
                 - nine
