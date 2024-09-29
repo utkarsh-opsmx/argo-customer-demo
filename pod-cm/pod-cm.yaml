@@ -43,7 +43,7 @@ metadata:
   name: my-job
   annotations:
     argocd.argoproj.io/hook: PostSync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    #argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   #ttlSecondsAfterFinished: 60
   template:
@@ -54,7 +54,7 @@ spec:
       containers:
       - name: my-job-container
         image: busybox
-        command: ["sh", "-c", "echo Hello Kubernetes! && sleep 120"]
+        command: ["sh", "-c", "echo Hello Kubernetes! && sleep 360"]
       restartPolicy: OnFailure
 
 ---
