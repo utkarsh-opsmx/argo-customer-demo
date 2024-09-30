@@ -57,6 +57,7 @@ spec:
       name: sync-wave-{{ .name}}
       labels:
         for: jpmc
+        syncWave: "{{ .syncWave }}"
       annotations:
         argocd.argoproj.io/sync-wave: "{{ .syncWave }}"
     spec:
