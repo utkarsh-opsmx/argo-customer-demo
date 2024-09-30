@@ -5,7 +5,7 @@
   "chart": "",
   "namespace": "test",
   "name": "one",
-  "syncwave": "one",
+  "syncWave": "one",
   "abcd": "",
   "ref": "test"
 }
