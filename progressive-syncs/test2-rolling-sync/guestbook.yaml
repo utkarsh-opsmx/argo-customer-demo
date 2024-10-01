@@ -26,9 +26,9 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/argoproj/argo-cd.git
-        targetRevision: HEAD
-        path: applicationset/examples/list-generator/guestbook/{{.cluster}}
+        repoURL: https://github.com/OpsMx/argo-customer-demo.git
+        targetRevision: test
+        path: applicationset/guestbook/{{.cluster}}
       destination:
         server: '{{.url}}'
         namespace: guestbook
