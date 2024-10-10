@@ -65,6 +65,8 @@ kubectl apply -f apps/git-source/single-git-source/single-git-source.yaml
 
 #Log in to the Argo CD dashboard and manage your applications.
 
+testing spinnaker webhook
+
 
  
 
