@@ -5,6 +5,7 @@ metadata:
   namespace: tcbargo
   labels:
      for: kotak
+     added: job
 spec:
   destination:
     namespace: spin-argo-trigger
