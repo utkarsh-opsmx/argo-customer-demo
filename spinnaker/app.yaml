@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: spin-argo-trigger
+  namespace: tcbargo
+spec:
+  destination:
+    namespace: spin-argo-trigger
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    path: cm
+    repoURL: 'https://github.com/gopaljayanthi/forjpmc.git'
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
