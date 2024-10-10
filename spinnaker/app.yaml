@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: spin-argo-trigger
   namespace: tcbargo
+  labels:
+     for: kotak
 spec:
   destination:
     namespace: spin-argo-trigger
