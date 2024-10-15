@@ -17,6 +17,8 @@ spec:
     repoURL: 'https://github.com/gopaljayanthi/forjpmc.git'
     targetRevision: ${parameters.targetRevision}
   syncPolicy:
-    automated: {}
+    automated: 
+      prune: true
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
