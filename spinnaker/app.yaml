@@ -15,7 +15,7 @@ spec:
   source:
     path: cm
     repoURL: 'https://github.com/gopaljayanthi/forjpmc.git'
-    targetRevision: HEAD
+    targetRevision: ${parameters.targetRevision}
   syncPolicy:
     automated: {}
     syncOptions:
