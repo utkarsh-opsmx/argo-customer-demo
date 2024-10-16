@@ -1,0 +1,276 @@
+{
+  "any": {},
+  "appConfig": {},
+  "expectedArtifacts": [],
+  "keepWaitingPipelines": false,
+  "lastModifiedBy": "tejaswini.munnangi@opsmx.io",
+  "limitConcurrent": true,
+  "parameterConfig": [
+    {
+      "default": "master",
+      "description": "the branch, tag or commit to be deployed",
+      "hasOptions": false,
+      "label": "",
+      "name": "targetRevision",
+      "options": [
+        {
+          "value": ""
+        }
+      ],
+      "pinned": false,
+      "required": true
+    },
+    {
+      "default": "spin-argo-trigger",
+      "description": "the name of the argocd application to be deployed",
+      "hasOptions": false,
+      "label": "",
+      "name": "appname",
+      "options": [
+        {
+          "value": ""
+        }
+      ],
+      "pinned": false,
+      "required": true
+    },
+    {
+      "default": "30",
+      "description": "duration in seconds to wait for the application to become synced and healthy",
+      "hasOptions": false,
+      "label": "",
+      "name": "timeout",
+      "options": [
+        {
+          "value": ""
+        }
+      ],
+      "pinned": false,
+      "required": true
+    }
+  ],
+  "schema": "1",
+  "spelEvaluator": "v4",
+  "stages": [
+    {
+      "account": "forargocd",
+      "cloudProvider": "kubernetes",
+      "manifestArtifact": {
+        "artifactAccount": "opsmxdemo_account",
+        "id": "5368b527-e485-4d38-94fa-432d9100fd0b",
+        "name": "spinnaker/app.yaml",
+        "reference": "https://api.github.com/repos/OpsMx/argo-customer-demo/contents/spinnaker/app.yaml",
+        "type": "github/file",
+        "version": "main"
+      },
+      "manifests": [
+        {
+          "apiVersion": "argoproj.io/v1alpha1",
+          "kind": "Application",
+          "metadata": {
+            "name": "spin-argo",
+            "namespace": "tcbargo"
+          },
+          "spec": {
+            "destination": {
+              "namespace": "spin-argo",
+              "server": "https://kubernetes.default.svc"
+            },
+            "project": "default",
+            "source": {
+              "path": "cm",
+              "repoURL": "https://github.com/gopaljayanthi/forjpmc.git",
+              "targetRevision": "${parameters.targetRevision}"
+            },
+            "syncPolicy": {
+              "automated": {},
+              "syncOptions": [
+                "CreateNamespace=true"
+              ]
+            }
+          }
+        }
+      ],
+      "moniker": {
+        "app": "spinargoapp"
+      },
+      "name": "DeployApp",
+      "refId": "1",
+      "requisiteStageRefIds": [
+        "12"
+      ],
+      "skipExpressionEvaluation": false,
+      "source": "artifact",
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false
+        }
+      },
+      "type": "deployManifest"
+    },
+    {
+      "failOnFailedExpressions": true,
+      "name": "checkAppStatus",
+      "refId": "2",
+      "requisiteStageRefIds": [
+        "11"
+      ],
+      "type": "evaluateVariables",
+      "variables": [
+        {
+          "key": "SyncStatus",
+          "value": "${#stage(\"getappafterdeploy\")[\"outputs\"][\"manifest\"][\"status\"][\"sync\"][\"status\"]}"
+        },
+        {
+          "key": "HealthStatus",
+          "value": "${#stage(\"getappafterdeploy\")[\"outputs\"][\"manifest\"][\"status\"][\"health\"][\"status\"]}"
+        },
+        {
+          "key": "ResourceStatus",
+          "value": "${#stage(\"getappafterdeploy\")[\"outputs\"][\"manifest\"][\"status\"][\"resources\"]}"
+        }
+      ]
+    },
+    {
+      "failPipeline": true,
+      "instructions": "shouldirollback",
+      "judgmentInputs": [
+        {
+          "value": "yes"
+        },
+        {
+          "value": "no"
+        }
+      ],
+      "name": "shouldirollback",
+      "notifications": [],
+      "refId": "3",
+      "requisiteStageRefIds": [
+        "2"
+      ],
+      "type": "manualJudgment"
+    },
+    {
+      "name": "Wait",
+      "refId": "6",
+      "requisiteStageRefIds": [
+        "1"
+      ],
+      "type": "wait",
+      "waitTime": "${parameters.timeout}"
+    },
+    {
+      "account": "forargocd",
+      "app": "spinargoapp",
+      "cloudProvider": "kubernetes",
+      "location": "tcbargo",
+      "manifestName": "applications.argoproj.io ${parameters.appname}",
+      "mode": "static",
+      "name": "getapp",
+      "refId": "7",
+      "requisiteStageRefIds": [
+        "8"
+      ],
+      "type": "findArtifactsFromResource"
+    },
+    {
+      "failOnFailedExpressions": true,
+      "name": "getrev",
+      "refId": "8",
+      "requisiteStageRefIds": [],
+      "type": "evaluateVariables",
+      "variables": [
+        {
+          "key": "revision",
+          "value": "${parameters.targetRevision}"
+        }
+      ]
+    },
+    {
+      "account": "forargocd",
+      "cloudProvider": "kubernetes",
+      "manifestArtifact": {
+        "artifactAccount": "opsmxdemo_account",
+        "id": "5f558b99-f03c-4895-b1ed-11d9efcb3974",
+        "name": "spinnaker/app.yaml",
+        "reference": "https://api.github.com/repos/OpsMx/argo-customer-demo/contents/spinnaker/app.yaml",
+        "type": "github/file",
+        "version": "main"
+      },
+      "moniker": {
+        "app": "spinargoapp"
+      },
+      "name": "rollback",
+      "refId": "9",
+      "requisiteStageRefIds": [
+        "10"
+      ],
+      "skipExpressionEvaluation": false,
+      "source": "artifact",
+      "stageEnabled": {
+        "expression": "${#stage(\"shouldirollback\")[\"context\"][\"judgmentInput\"] == 'yes'}",
+        "type": "expression"
+      },
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false,
+          "services": []
+        }
+      },
+      "type": "deployManifest"
+    },
+    {
+      "failOnFailedExpressions": true,
+      "name": "previousrevision",
+      "refId": "10",
+      "requisiteStageRefIds": [
+        "3"
+      ],
+      "stageEnabled": {
+        "expression": "${#stage(\"shouldirollback\")[\"context\"][\"judgmentInput\"] == 'yes'}",
+        "type": "expression"
+      },
+      "type": "evaluateVariables",
+      "variables": [
+        {
+          "key": "revision",
+          "value": "${getpreviousrevision}"
+        }
+      ]
+    },
+    {
+      "account": "forargocd",
+      "app": "spinargoapp",
+      "cloudProvider": "kubernetes",
+      "location": "tcbargo",
+      "manifestName": "applications.argoproj.io ${parameters.appname}",
+      "mode": "static",
+      "name": "getappafterdeploy",
+      "refId": "11",
+      "requisiteStageRefIds": [
+        "6"
+      ],
+      "type": "findArtifactsFromResource"
+    },
+    {
+      "failOnFailedExpressions": true,
+      "name": "getPreviousRevision",
+      "refId": "12",
+      "requisiteStageRefIds": [
+        "7"
+      ],
+      "type": "evaluateVariables",
+      "variables": [
+        {
+          "key": "getpreviousrevision",
+          "value": "${#stage(\"getapp\")[\"outputs\"][\"manifest\"][\"spec\"][\"source\"][\"targetRevision\"]}"
+        }
+      ]
+    }
+  ],
+  "triggers": [],
+  "updateTs": "1729087285011",
+  "variables": {}
+}
