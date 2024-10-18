@@ -236,7 +236,7 @@
       "variables": [
         {
           "key": "revision",
-          "value": "${getpreviousrevision}"
+          "value": "${getgitrevision}"
         }
       ]
     },
@@ -266,11 +266,15 @@
         {
           "key": "getpreviousrevision",
           "value": "${#stage(\"getapp\")[\"outputs\"][\"manifest\"][\"spec\"][\"source\"][\"targetRevision\"]}"
+        },
+        {
+          "key": "getgitrevision",
+          "value": "${#stage(\"getapp\")[\"outputs\"][\"manifest\"][\"status\"][\"sync\"][\"revision\"]}"
         }
       ]
     }
   ],
   "triggers": [],
-  "updateTs": "1729087285011",
+  "updateTs": "1729258727682",
   "variables": {}
 }
