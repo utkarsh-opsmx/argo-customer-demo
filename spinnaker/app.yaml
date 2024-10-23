@@ -7,6 +7,14 @@ metadata:
      for: kotak
      added: job
      another: label
+     app.kubernetes.io/managed-by: spinnaker
+     app.kubernetes.io/name: spinargoapp
+  annotations:
+     artifact.spinnaker.io/location: tcbargo
+     artifact.spinnaker.io/name: spin-argo-trigger
+     artifact.spinnaker.io/type: kubernetes/application
+     moniker.spinnaker.io/application: spinargoapp
+     moniker.spinnaker.io/cluster: application spin-argo-trigger
 spec:
   destination:
     namespace: spin-argo-trigger
