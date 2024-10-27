@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: two-diff-sources
+  name: 1-git-1-helm-app
   namespace: argocd
   labels:
     for: jpmc
