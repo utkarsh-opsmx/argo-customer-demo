@@ -12,16 +12,16 @@ spec:
     namespace: argocd-kt1
   sources:
     - repoURL: https://github.com/bitthalpatidar/argocd-task.git
-      path: data/two-source/source-one
+      path: datas/combination-sources-data/2-helm-1-git/git1
       targetRevision: HEAD
     - repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
-      path: datas/helm/dubble-helm/helm2
+      path: datas/combination-sources-data/2-helm-1-git/helm1
       targetRevision: test
       helm:
         valueFiles:
           - values.yaml
     - repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
-      path: datas/helm/dubble-helm/helm2
+      path: ddatas/combination-sources-data/2-helm-1-git/helm2
       targetRevision: test
       helm:
         valueFiles:
