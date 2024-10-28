@@ -21,7 +21,7 @@ spec:
         valueFiles:
           - values.yaml
     - repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
-      path: ddatas/combination-sources-data/2-helm-1-git/helm2
+      path: datas/combination-sources-data/2-helm-1-git/helm2
       targetRevision: test
       helm:
         valueFiles:
