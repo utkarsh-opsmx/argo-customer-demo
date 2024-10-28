@@ -1,0 +1,23 @@
+# ConfigMap Definition
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: git1-resource-cm
+data:
+  myvalue: "mykey"
+  secondvalue: "secondkey"
+  thisdkey: "thisdvalue"
+  fourth: "four"
+
+---
+# Pod Definition
+apiVersion: v1
+kind: Pod
+metadata:
+  name: git1-resource-pod
+spec:
+  containers:
+    - name: nginx
+      image: nginx:latest
+      ports:
+        - containerPort: 80
