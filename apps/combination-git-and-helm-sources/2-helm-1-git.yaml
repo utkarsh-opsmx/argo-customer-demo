@@ -11,9 +11,9 @@ spec:
     server: https://kubernetes.default.svc
     namespace: argocd-kt1
   sources:
-    - repoURL: https://github.com/bitthalpatidar/argocd-task.git
+    - repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
       path: datas/combination-sources-data/2-helm-1-git/git1
-      targetRevision: HEAD
+      targetRevision: test
     - repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
       path: datas/combination-sources-data/2-helm-1-git/helm1
       targetRevision: test
