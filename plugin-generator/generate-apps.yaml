@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: custom-plugin-script
+  namespace: argocd
+data:
+  generate-apps.sh: |
+    #!/bin/bash
+    cat <<EOF
+    [
+      {
+        "name": "app1",
+        "path": "app1-path",
+        "namespace": "default"
+      },
+      {
+        "name": "app2",
+        "path": "app2-path",
+        "namespace": "default"
+      }
+    ]
+    EOF
