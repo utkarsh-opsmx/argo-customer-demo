@@ -7,4 +7,4 @@ data:
   configManagementPlugins: |
     - name: custom-plugin-generator
       generate:
-        command: ["/path/to/generate-apps.sh"]
+        command: ["generate-apps.sh"]
