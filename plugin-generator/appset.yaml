@@ -7,9 +7,8 @@ spec:
   generators:
     - plugin:
         name: custom-plugin-generator
-        env:
-          - name: ENVIRONMENT
-            value: "production"
+        configMapRef:
+          name: custom-plugin-script
   template:
     metadata:
       name: "{{name}}"
