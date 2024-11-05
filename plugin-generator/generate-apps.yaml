@@ -1,45 +1,22 @@
-# apiVersion: v1
-# kind: ConfigMap
-# metadata:
-#   name: custom-plugin-script
-#   namespace: argocd
-# data:
-#   baseUrl: "https://kubernetes.default.svc"
-#   generate-apps.sh: |
-#     #!/bin/bash
-#     cat <<EOF
-#     [
-#       {
-#         "name": "app1",
-#         "namespace": "argocd-kt"
-#       },
-#       {
-#         "name": "app2",
-#         "namespace": "test"
-#       }
-#     ]
-#     EOF
-
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: custom-plugin-script
   namespace: argocd
 data:
-  baseUrl: "https://kubernetes.default.svc"  # Define the base URL here
   generate-apps.sh: |
     #!/bin/bash
     cat <<EOF
     [
       {
         "name": "app1",
-        "path": "${baseUrl}/app1-path",  # Use the baseUrl variable
-        "namespace": "default"
+        #"path": "app1-path",  # Adjust paths as needed
+        "namespace": "argocd-kt"
       },
       {
         "name": "app2",
-        "path": "${baseUrl}/app2-path",  # Use the baseUrl variable
-        "namespace": "default"
+        #"path": "app2-path",  # Adjust paths as needed
+        "namespace": "test"
       }
     ]
     EOF
