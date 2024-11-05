@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: example-plugin-generator
+  namespace: argocd
 spec:
   generators:
     - plugin:
@@ -15,8 +16,8 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/your-org/your-repo
-        targetRevision: main
+        repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
+        targetRevision: test
         path: "{{path}}"
       destination:
         server: https://kubernetes.default.svc
