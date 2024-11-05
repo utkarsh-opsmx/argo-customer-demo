@@ -10,13 +10,11 @@ data:
     [
       {
         "name": "app1",
-        "path": "app1-path",
-        "namespace": "default"
+        "namespace": "argocd-kt"
       },
       {
         "name": "app2",
-        "path": "app2-path",
-        "namespace": "default"
+        "namespace": "test"
       }
     ]
     EOF
