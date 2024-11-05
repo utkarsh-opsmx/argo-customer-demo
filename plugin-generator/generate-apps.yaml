@@ -30,4 +30,4 @@ data:
   configManagementPlugins: |
     - name: custom-plugin-generator
       generate:
-        command: ["/bin/bash", "generate-apps.sh"]
+        command: ["/bin/bash", "plugin-generator/generate-apps.sh"]
