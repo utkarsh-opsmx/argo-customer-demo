@@ -6,20 +6,28 @@ metadata:
 data:
   generate-apps.sh: |
     #!/bin/bash
-    cat <<EOF
-    [
-      {
-        "name": "app1",
-        "path": "datas/git/two-git-source/git1",  # Adjust paths as needed
-        "namespace": "argocd-kt"
-      },
-      {
-        "name": "app2",
-        "path": "datas/git/two-git-source/git2",  # Adjust paths as needed
-        "namespace": "test"
-      }
-    ]
-    EOF
+    # This script generates application definitions in JSON format for Argo CD.
+    
+    # Start the JSON array
+    echo "["
+    
+    # First application entry
+    echo "  {"
+    echo "    \"name\": \"app1\","
+    echo "    \"path\": \"datas/git/two-git-source/git1\","
+    echo "    \"namespace\": \"argocd-kt\""
+    echo "  },"
+    
+    # Second application entry
+    echo "  {"
+    echo "    \"name\": \"app2\","
+    echo "    \"path\": \"datas/git/two-git-source/git2\","
+    echo "    \"namespace\": \"test\""
+    echo "  }"
+    
+    # End the JSON array
+    echo "]"
+
 ---
 apiVersion: v1
 kind: ConfigMap
