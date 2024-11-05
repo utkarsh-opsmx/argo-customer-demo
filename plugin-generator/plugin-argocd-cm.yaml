@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: plugin-cm
+  name: argocd-cm
   namespace: argocd
 data:
   configManagementPlugins: |
     - name: custom-plugin-generator
       generate:
-        command: ["./generate-apps.sh"]
+        command: ["/bin/bash", "/generate-apps.sh"]
