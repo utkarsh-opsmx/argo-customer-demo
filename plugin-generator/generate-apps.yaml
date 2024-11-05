@@ -20,3 +20,14 @@ data:
       }
     ]
     EOF
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm1
+  namespace: argocd
+data:
+  configManagementPlugins: |
+    - name: custom-plugin-generator
+      generate:
+        command: ["/bin/bash", "generate-apps.sh"]
