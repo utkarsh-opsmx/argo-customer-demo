@@ -10,12 +10,12 @@ data:
     [
       {
         "name": "app1",
-        #"path": "app1-path",  # Adjust paths as needed
+        "path": "datas/git/two-git-source/git1",  # Adjust paths as needed
         "namespace": "argocd-kt"
       },
       {
         "name": "app2",
-        #"path": "app2-path",  # Adjust paths as needed
+        "path": "datas/git/two-git-source/git2",  # Adjust paths as needed
         "namespace": "test"
       }
     ]
