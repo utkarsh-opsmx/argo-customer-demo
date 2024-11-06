@@ -14,7 +14,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/gopaljayanthi/applicationset-hello-plugin.git
+        repoURL: https://github.com/bitthalpatidar/applicationset-hello-plugin.git
         path: .
         targetRevision: main
       destination:
