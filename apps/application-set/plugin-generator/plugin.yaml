@@ -19,7 +19,7 @@ spec:
         targetRevision: main
       destination:
         server: https://kubernetes.default.svc
-        namespace: "{{hello}}"
+        namespace: "my-{{hello}}"
       syncPolicy:
         automated:
           prune: true
