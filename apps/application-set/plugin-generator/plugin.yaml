@@ -13,7 +13,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/argoproj-labs/applicationset-hello-plugin.git
+        repoURL: https://github.com/bitthalpatidar/applicationset-hello-plugin.git
         path: .
       destination:
         server: https://kubernetes.default.svc
