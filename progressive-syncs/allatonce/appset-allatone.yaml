@@ -14,10 +14,10 @@ spec:
   strategy:
     type: AllAtOnce
   syncPolicy:
-    #applicationsSync: create-delete
+    applicationsSync: create-delete
     #applicationsSync: create-update
     #applicationsSync: create-only
-    preserveResourcesOnDeletion: false
+    #preserveResourcesOnDeletion: false
     #preserveResourcesOnDeletion: true
   template:
     metadata:
