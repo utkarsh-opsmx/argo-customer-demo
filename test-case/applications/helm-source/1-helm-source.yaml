@@ -11,8 +11,8 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
-    path: datas/helm/single-helm
-    targetRevision: test
+    path: source-data/helm/single-helm
+    targetRevision: testcase
     helm:
       valueFiles:
         - values.yaml
