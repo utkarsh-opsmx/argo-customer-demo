@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: single-git-source
+  namespace: argocd
+  labels:
+     for: jpmc
+spec:
+  destination:
+    namespace: argocd-kt
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: datas/git/single-git-source
+    repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
+    targetRevision: test
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
