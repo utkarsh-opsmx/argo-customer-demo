@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: applicationset-matrix
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - appName: two-helm1
+                - appName: two-helm2
+          - list:
+              elements:
+                - name: helm-chart-1
+                  valuesPath: "datas/application-set-date/matrix-data/matrix1/two-helm/helm-chart-1"
+                - name: helm-chart-2
+                  valuesPath: "datas/application-set-date/matrix-data/matrix2/two-helm/helm-chart-2"
+                
+  template:
+    metadata:
+      name: '{{appName}}-{{name}}'
+      labels:
+        for: jpmc
+    spec:
+      project: default
+      source:
+        repoURL: "https://github.com/OpsMx/argo-customer-demo.git"
+        targetRevision: "test"
+        path: "{{valuesPath}}"
+      destination:
+        server: "https://kubernetes.default.svc"
+        namespace: '{{appName}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
