@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: helm2-cm
+data:
+  log_level: {{ .Values.configMap.log_level }}
