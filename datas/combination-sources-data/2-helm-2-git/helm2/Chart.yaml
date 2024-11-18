@@ -1,5 +1,0 @@
-apiVersion: v2
-name: two-git-two-helm-chart-helm2
-description: A Helm chart for my application
-version: 0.1.0
-appVersion: "1.0"
