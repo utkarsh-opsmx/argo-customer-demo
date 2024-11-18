@@ -4,56 +4,54 @@ metadata:
   name: appset-progressive-allatonce
   namespace: argocd
 spec:
-  generators:
-  - git:
-      files:
-      - path: stack/config.json
-      #- path: stack/kube-prometheus-stack/dev/config2.json
-      repoURL: https://github.com/OpsMx/argo-customer-demo.git
-      revision: test
   strategy:
     type: AllAtOnce
   syncPolicy:
-    applicationsSync: create-delete
+    #preserveResourcesOnDeletion: false               
+    applicationsSync: create-only
     #applicationsSync: create-update
-    #applicationsSync: create-only
+    #applicationsSync: create-delete
     #preserveResourcesOnDeletion: false
     #preserveResourcesOnDeletion: true
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - matrix:
+      generators:
+      - git:
+          repoURL: https://github.com/bitthalpatidar/forjpmc.git
+          revision: master
+          files:
+          - path: "addons/cmapp/dev/config.json"
+      - list:
+          elements:
+          - cluster: in-cluster
+            url: https://kubernetes.default.svc
+            values:
+              namespace: ns1
+          # - cluster: in-cluster
+          #   url: https://kubernetes.default.svc
+          #   values:
+          #      namespace: ns2
+          # - cluster: in-cluster
+          #   url: https://kubernetes.default.svc
+          #   values:
+          #     namespace: ns3
   template:
     metadata:
-      name: allatonce-sync-{{name}}
-      labels:
-         for: jpmc
+      name: '{{.name}}-{{.values.namespace}}'
     spec:
-      destination:
-        name: in-cluster
-        namespace: '{{namespace}}'
       project: default
-      sources:
-      - chart: '{{chart}}'
-        helm:
-          parameters:
-          - name: "nodeExporter.enabled"
-            value: "false"
-          - name: "prometheusOperator.enabled"
-            value: "false"
-          - name: "prometheus.enabled"
-            value: "false"
-          - name: "alertmanager.enabled"
-            value: "false"
-          releaseName: '{{name}}'
-        repoURL: '{{repoURL}}'
-        targetRevision: '{{targetRevision}}'
+      source:
+        repoURL: https://github.com/bitthalpatidar/forjpmc.git
+        targetRevision: HEAD
+        path: configmap
+      destination:
+        server: '{{.url}}'
+        namespace: '{{.values.namespace}}'
       syncPolicy:
-        automated:
-          allowEmpty: true
-          prune: true
-        retry:
-          backoff:
-            duration: 60s
-            factor: 2
-            maxDuration: 2m
-          limit: 10
+        automated: {}
         syncOptions:
-        - CreateNamespace=true
-        - ServerSideApply=true
+          - CreateNamespace=true
+          - ServerSideApply=true
+          - PrunePropagationPolicy=orphan
