@@ -15,7 +15,7 @@ spec:
       recurse: true
     path: progressive-syncs/rolling-sync
     repoURL: https://github.com/OpsMx/argo-customer-demo
-    targetRevision: test
+    targetRevision: testcase
   syncPolicy:
     automated:
       prune: true
