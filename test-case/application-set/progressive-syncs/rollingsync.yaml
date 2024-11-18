@@ -1,0 +1,200 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: appset-rolling-sync
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      files:
+      - path: sync-wave/*/config.json
+      repoURL: https://github.com/OpsMx/argo-customer-demo.git
+      revision: testcase
+  strategy:
+    type: RollingSync
+    rollingSync:
+      steps:
+        - matchExpressions:
+            - key: syncWave
+              operator: In
+              values: 
+                - zero
+          maxUpdate: 100%
+        - matchExpressions:
+            - key: syncWave
+              operator: In
+              values: 
+                - one
+          maxUpdate: 100%
+        - matchExpressions:
+            - key: syncWave
+              operator: In
+              values: 
+                - two
+          maxUpdate: 100%
+        - matchExpressions:
+            - key: syncWave
+              operator: In
+              values: 
+                - three
+          maxUpdate: 100%
+        - matchExpressions:
+            - key: syncWave
+              operator: In
+              values: 
+                - four
+          maxUpdate: 100%
+        - matchExpressions:
+            - key: syncWave
+              operator: In
+              values: 
+                - nine
+          maxUpdate: 100%
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  template:
+    metadata:
+      name: rollingsync-sync-wave-{{ .name}}
+      labels:
+        for: jpmc
+        syncWave: "{{ .syncWave }}"
+      annotations:
+        argocd.argoproj.io/sync-wave: "{{ .syncWave }}"
+    spec:
+      destination:
+        name: in-cluster
+        namespace: '{{ .namespace}}'
+      project: default
+      sources:
+        - repoURL: '{{ .repoURL}}'
+          targetRevision: '{{ .targetRevision}}'
+          chart: '{{ .chart}}'
+          ref: '{{ .ref}}'
+        - repoURL: https://github.com/OpsMx/argo-customer-demo.git
+          targetRevision: testcase
+          path: pod-cm
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: argocd
+  name: argocd-app-patch-role
+rules:
+  - apiGroups: ["argoproj.io"]
+    resources: ["applications"]
+    verbs: ["patch", "update", "get", "list", "watch"]
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: rolling-sync-app-status-sa
+  namespace: argocd
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: argocd
+  name: argocd-app-patch-rolebinding
+subjects:
+  - kind: ServiceAccount
+    name: rolling-sync-app-status-sa
+    namespace: argocd
+roleRef:
+  kind: Role
+  name: argocd-app-patch-role
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-rolling-sync-check
+  namespace: argocd
+data:
+  get-argocd-app-rolling.sh: |
+    #!/bin/bash
+
+    # Define the applications to monitor
+    APPLICATIONS=("rollingsync-sync-wave-one" "rollingsync-sync-wave-two")
+
+    # Check for status of each application until all conditions are met
+    kubectl patch application.argoproj.io rollingsync-sync-wave-one rollingsync-sync-wave-two --type merge -p '{"spec": {"syncPolicy": {"automated": {"prune": true, "selfHeal": true}}}}'
+    
+    while true; do
+      all_synced=true
+
+      for app in "${APPLICATIONS[@]}"; do
+        # Fetch application statuses
+        
+        healthStatus=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.health.status}')
+        syncStatus=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.sync.status}')
+        lastSyncResult=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.phase}')
+
+        # Check if the status is as expected
+        if [[ "$healthStatus" == "Healthy" && "$syncStatus" == "Synced" && "$lastSyncResult" == "Succeeded" ]]; then
+          #completionTime=$(date '+%Y-%m-%d %H:%M:%S')
+          echo "Application $app is Healthy, Synced, and Last Sync is OK"
+        else
+          echo "Application $app is not in the desired state. Health: $healthStatus, Sync: $syncStatus, Last Sync: $lastSyncResult"
+          all_synced=false
+          break
+        fi
+        # Fetch required details using kubectl
+        appcreation=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.metadata.creationTimestamp}')
+        appdeployStartedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployStartedAt}')
+        appdeployedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.history[0].deployedAt}')
+        appfinishedAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.operationState.finishedAt}')
+        appreconciledAt=$(kubectl get application.argoproj.io "$app" -o jsonpath='{.status.reconciledAt}')
+        
+        # Display the results
+        echo "$app | Creation Timestamp: $appcreation | Deploy Started At: $appdeployStartedAt | Deployed At: $appdeployedAt | Finished At: $appfinishedAt | Reconciled At: $appreconciledAt"
+      done
+
+      # If all applications are in the desired state, exit the loop
+      if [ "$all_synced" == true ]; then
+        echo "All applications are in the desired state."
+        break
+      else
+        echo "Waiting for applications to reach the desired state..."
+      fi
+
+      # Wait before checking again
+      sleep 30
+    done
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: argocd-rolling-sync-job
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    #argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      serviceAccountName: rolling-sync-app-status-sa
+      containers:
+      - name: argocd-app-rolling-sync
+        image: bitnami/kubectl:latest
+        command: ["/bin/bash", "/rolling-scripts/get-argocd-app-rolling.sh"]
+        volumeMounts:
+        - name: script-volume-rolling
+          mountPath: /rolling-scripts
+          readOnly: true
+      restartPolicy: Never
+      volumes:
+      - name: script-volume-rolling
+        configMap:
+          name: app-rolling-sync-check
+          items:
+            - key: get-argocd-app-rolling.sh
+              path: get-argocd-app-rolling.sh
+  backoffLimit: 1
