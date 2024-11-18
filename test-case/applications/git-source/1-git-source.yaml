@@ -10,9 +10,9 @@ spec:
     namespace: argocd-kt
     server: 'https://kubernetes.default.svc'
   source:
-    path: datas/git/single-git-source
+    path: source-data/git/single-git-source
     repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
-    targetRevision: test
+    targetRevision: testcase
   project: default
   syncPolicy:
     automated:
