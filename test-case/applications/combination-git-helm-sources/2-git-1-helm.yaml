@@ -13,13 +13,13 @@ spec:
   sources:
     - repoURL: https://github.com/OpsMx/argo-customer-demo.git
       path: source-data/combination-sources-data/2-git-1-helm/1-git
-      targetRevision: test
+      targetRevision: testcase
     - repoURL: https://github.com/OpsMx/argo-customer-demo.git
       path: source-data/combination-sources-data/2-git-1-helm/2-git
-      targetRevision: test
+      targetRevision: testcase
     - repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
       path: source-data/combination-sources-data/2-git-1-helm/1-helm
-      targetRevision: test
+      targetRevision: testcase
       helm:
         valueFiles:
           - values.yaml
