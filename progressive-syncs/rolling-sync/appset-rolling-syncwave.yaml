@@ -54,7 +54,7 @@ spec:
   goTemplateOptions: ["missingkey=error"]
   template:
     metadata:
-      name: sync-wave-{{ .name}}
+      name: rollingsync-sync-wave-{{ .name}}
       labels:
         for: jpmc
         syncWave: "{{ .syncWave }}"
