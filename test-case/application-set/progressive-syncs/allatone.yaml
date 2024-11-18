@@ -22,7 +22,7 @@ spec:
           repoURL: https://github.com/OpsMx/argo-customer-demo.git
           revision: testcase
           files:
-          - path: "stack/config.json"
+          - path: "source-data/stack/config.json"
       - list:
           elements:
           - cluster: in-cluster
@@ -45,7 +45,7 @@ spec:
       source:
         repoURL: https://github.com/OpsMx/argo-customer-demo.git
         targetRevision: testcase
-        path: datas/configmap
+        path: source-data/configmap
       destination:
         server: '{{.url}}'
         namespace: '{{.values.namespace}}'
