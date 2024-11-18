@@ -1,10 +1,18 @@
 {
-  "repoURL": "https://prometheus-community.github.io/helm-charts",
-  "targetRevision": "54.0.1",
-  "chart": "kube-prometheus-stack",
+  "repoURL": "https://github.com/OpsMx/argo-customer-demo.git",
+  "targetRevision": "testcase",
+  "chart": "",
   "namespace": "test",
-  "name": "stack",
+  "name": "ecrapp-one-wave",
   "syncwave" : "one",
   "abcd": "",
   "ref": "main"
 }
+
+
+
+
+
+
+
+
