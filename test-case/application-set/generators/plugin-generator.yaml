@@ -1,28 +1,45 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: myplugin
+  name: multicm-myplugin
   namespace: argocd
 spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
   generators:
     - plugin:
         configMapRef:
           name: applicationset-hello-plugin
+        input:
+          parameters:
+            repo: "OpsMx/argo-customer-demo"
+            branch: "testcase"
+            folder: "source-data/configmap"
+        requeueAfterSeconds: 60
   template:
     metadata:
-      name: "from-appset-{{hello}}"
+      name: "multicm-myplugin"
+      annotations:
+        example.from.plugin.output: "{{ .contents }}"
     spec:
       project: default
       source:
-        repoURL: https://github.com/bitthalpatidar/applicationset-hello-plugin.git
-        path: .
-        targetRevision: main
+        repoURL: https://github.com/OpsMx/argo-customer-demo.git
+        path: multicm-plugin-helm
+        targetRevision: testcase
       destination:
         server: https://kubernetes.default.svc
-        namespace: "my-{{hello}}"
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-        syncOptions:
-          - CreateNamespace=true
+        namespace: default
+  templatePatch: |
+    spec:
+      source:
+        helm:
+          parameters:
+          {{- if .contents }}
+          {{- range $fileName, $fileContents := .contents }}
+            - name: 'configMapFiles.{{ $fileName | replace "." "\\." }}'
+              value: '{{ $fileContents }}'
+          {{- end }}
+            - name: "name"
+              value: '{{.name}}'
+          {{- end }}
