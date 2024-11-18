@@ -22,7 +22,7 @@ spec:
           repoURL: https://github.com/OpsMx/argo-customer-demo.git
           revision: testcase
           files:
-          - path: "addons/cmapp/dev/config.json"
+          - path: "stack/config.json"
       - list:
           elements:
           - cluster: in-cluster
