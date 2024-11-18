@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: appset-syncwave
+  name: appset-progressive-rollingsync
   namespace: argocd
   labels:
     for: jpmc
