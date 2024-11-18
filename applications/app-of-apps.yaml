@@ -15,7 +15,7 @@ spec:
       recurse: true
     path: apps
     repoURL: https://github.com/OpsMx/argo-customer-demo
-    targetRevision: test
+    targetRevision: testcase
   syncPolicy:
     #automated: {}
     syncOptions:
