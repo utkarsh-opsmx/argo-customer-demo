@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: multicm-myplugin
+  name: multicm-myplugin2
   namespace: argocd
 spec:
   goTemplate: true
@@ -18,7 +18,7 @@ spec:
         requeueAfterSeconds: 60
   template:
     metadata:
-      name: "multicm-myplugin"
+      name: "multicm-myplugin2"
       annotations:
         example.from.plugin.output: "{{ .contents }}"
     spec:
