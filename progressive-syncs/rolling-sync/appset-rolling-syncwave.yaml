@@ -124,7 +124,7 @@ data:
     APPLICATIONS=("rollingsync-sync-wave-one" "rollingsync-sync-wave-two")
 
     # Check for status of each application until all conditions are met
-    kubectl patch application.argoproj.io sync-wave-one sync-wave-two --type merge -p '{"spec": {"syncPolicy": {"automated": {"prune": true, "selfHeal": true}}}}'
+    kubectl patch application.argoproj.io rollingsync-sync-wave-one rollingsync-sync-wave-two --type merge -p '{"spec": {"syncPolicy": {"automated": {"prune": true, "selfHeal": true}}}}'
     
     while true; do
       all_synced=true
