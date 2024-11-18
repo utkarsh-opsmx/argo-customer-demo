@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 2-helm-1-git-app
+  namespace: argocd
+  labels:
+    for: jpmc
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd-kt1
+  sources:
+    - repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
+      path: datas/combination-sources-data/2-helm-1-git/git1
+      targetRevision: test
+    - repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
+      path: datas/combination-sources-data/2-helm-1-git/helm1
+      targetRevision: test
+      helm:
+        valueFiles:
+          - values.yaml
+    - repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
+      path: datas/combination-sources-data/2-helm-1-git/helm2
+      targetRevision: test
+      helm:
+        valueFiles:
+          - values.yaml
+         
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
