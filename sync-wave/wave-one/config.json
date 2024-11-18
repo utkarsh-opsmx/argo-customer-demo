@@ -1,6 +1,6 @@
 {
   "repoURL": "https://github.com/OpsMx/argo-customer-demo.git",
-  "targetRevision": "test",
+  "targetRevision": "testcase",
   "path": "sync-wave/wave-one",
   "chart": "",
   "namespace": "test",
