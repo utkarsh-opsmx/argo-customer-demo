@@ -14,9 +14,9 @@ spec:
           - list:
               elements:
                 - name: helm-chart-1
-                  valuesPath: "datas/application-set-date/matrix-data/matrix1/two-helm/helm-chart-1"
+                  valuesPath: "source-data/application-set-data/matrix-data/matrix1/two-helm/helm-chart-1"
                 - name: helm-chart-2
-                  valuesPath: "datas/application-set-date/matrix-data/matrix2/two-helm/helm-chart-2"
+                  valuesPath: "source-data/application-set-data/matrix-data/matrix2/two-helm/helm-chart-2"
                 
   template:
     metadata:
@@ -27,7 +27,7 @@ spec:
       project: default
       source:
         repoURL: "https://github.com/OpsMx/argo-customer-demo.git"
-        targetRevision: "test"
+        targetRevision: "testcase"
         path: "{{valuesPath}}"
       destination:
         server: "https://kubernetes.default.svc"
