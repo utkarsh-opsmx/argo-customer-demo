@@ -12,17 +12,17 @@ spec:
     namespace: argocd-kt1
   sources:
     - repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
-      path: datas/combination-sources-data/2-helm-1-git/git1
-      targetRevision: test
+      path: source-data/combination-sources-data/2-helm-1-git/git1
+      targetRevision: testcase
     - repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
-      path: datas/combination-sources-data/2-helm-1-git/helm1
-      targetRevision: test
+      path: source-data/combination-sources-data/2-helm-1-git/helm1
+      targetRevision: testcase
       helm:
         valueFiles:
           - values.yaml
     - repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
-      path: datas/combination-sources-data/2-helm-1-git/helm2
-      targetRevision: test
+      path: source-data/combination-sources-data/2-helm-1-git/helm2
+      targetRevision: testcase
       helm:
         valueFiles:
           - values.yaml
