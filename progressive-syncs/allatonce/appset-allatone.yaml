@@ -45,7 +45,7 @@ spec:
       source:
         repoURL: https://github.com/OpsMx/argo-customer-demo.git
         targetRevision: testcase
-        path: configmap
+        path: datas/configmap
       destination:
         server: '{{.url}}'
         namespace: '{{.values.namespace}}'
