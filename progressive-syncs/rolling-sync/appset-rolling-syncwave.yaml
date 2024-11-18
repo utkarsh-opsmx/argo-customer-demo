@@ -9,7 +9,7 @@ spec:
       files:
       - path: sync-wave/*/config.json
       repoURL: https://github.com/OpsMx/argo-customer-demo.git
-      revision: test
+      revision: testcase
   strategy:
     type: RollingSync
     rollingSync:
@@ -71,7 +71,7 @@ spec:
           chart: '{{ .chart}}'
           ref: '{{ .ref}}'
         - repoURL: https://github.com/OpsMx/argo-customer-demo.git
-          targetRevision: test
+          targetRevision: testcase
           path: pod-cm
       syncPolicy:
         automated:
