@@ -7,7 +7,7 @@ spec:
   generators:
   - git:
       files:
-      - path: sync-wave/*/config.json
+      - path: source-data/sync-wave/*/config.json
       repoURL: https://github.com/OpsMx/argo-customer-demo.git
       revision: testcase
   strategy:
@@ -72,7 +72,7 @@ spec:
           ref: '{{ .ref}}'
         - repoURL: https://github.com/OpsMx/argo-customer-demo.git
           targetRevision: testcase
-          path: pod-cm
+          path: source-data/pod-cm
       syncPolicy:
         automated:
           prune: true
