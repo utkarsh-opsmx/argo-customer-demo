@@ -9,12 +9,12 @@ spec:
         elements:
           - name: list-application-set-app1
             repoURL: https://github.com/OpsMx/argo-customer-demo.git          #pod
-            targetRevision: test
-            path: datas/application-set-date/list-data/app1
+            targetRevision: testcase
+            path: source-data/application-set-data/list-data/app1
           - name: list-application-set-app2
             repoURL: https://github.com/OpsMx/argo-customer-demo.git           #service
-            targetRevision: test
-            path: datas/application-set-date/list-data/app2
+            targetRevision: testcase
+            path: source-data/application-set-data/list-data/app2
   template:
     metadata:
       name: '{{name}}'
