@@ -1,0 +1,10 @@
+{
+  "repoURL": "https://github.com/OpsMx/argo-customer-demo.git",
+  "targetRevision": "testcase",
+  "chart": "",
+  "namespace": "test1",
+  "name": "two",
+  "syncWave" : "nine",
+  "abcd": "",
+  "ref": "test"
+}
