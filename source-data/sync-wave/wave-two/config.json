@@ -1,10 +1,11 @@
 {
   "repoURL": "https://github.com/OpsMx/argo-customer-demo.git",
   "targetRevision": "testcase",
+  "sourcePath": "source-data/pod-cm",
   "chart": "",
   "namespace": "test1",
   "name": "two",
-  "syncWave" : "nine",
+  "syncWave" : "two",
   "abcd": "",
   "ref": "test"
 }
