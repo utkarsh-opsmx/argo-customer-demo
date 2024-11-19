@@ -2,9 +2,9 @@
   "repoURL": "https://github.com/OpsMx/argo-customer-demo.git",
   "targetRevision": "testcase",
   "chart": "",
-  "namespace": "test1",
-  "name": "two",
-  "syncWave" : "nine",
+  "namespace": "test3",
+  "name": "three",
+  "syncWave" : "three",
   "abcd": "",
   "ref": "test"
 }
