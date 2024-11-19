@@ -1,6 +1,7 @@
 {
   "repoURL": "https://github.com/OpsMx/argo-customer-demo.git",
   "targetRevision": "testcase",
+  "sourcePath": "source-data/my-sa",
   "chart": "",
   "namespace": "test3",
   "name": "three",
