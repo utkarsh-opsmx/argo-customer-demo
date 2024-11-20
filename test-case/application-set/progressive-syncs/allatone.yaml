@@ -6,8 +6,8 @@ metadata:
 spec:
   strategy:
     type: AllAtOnce
-  syncPolicy:              
-    applicationsSync: create-only
+  # syncPolicy:              
+  #   applicationsSync: create-only
     #applicationsSync: create-update
     #applicationsSync: create-delete
   goTemplate: true
