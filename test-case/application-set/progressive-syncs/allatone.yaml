@@ -6,10 +6,6 @@ metadata:
 spec:
   strategy:
     type: AllAtOnce
-  # syncPolicy:              
-  #   applicationsSync: create-only
-    #applicationsSync: create-update
-    #applicationsSync: create-delete
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
