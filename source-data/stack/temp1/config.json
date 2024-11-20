@@ -1,0 +1,9 @@
+{
+  "repoURL": "https://github.com/OpsMx/argo-customer-demo.git",
+  "targetRevision": "testcase",
+  "sourcePath": "source-data/configmap",
+  "chart": "",
+  "namespace": "test",
+  "name": "ecrapp-one-wave",
+  "ref": "main"
+}
