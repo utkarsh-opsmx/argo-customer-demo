@@ -26,14 +26,14 @@ spec:
             url: https://kubernetes.default.svc
             values:
               namespace: ns1
-          # - cluster: in-cluster
-          #   url: https://kubernetes.default.svc
-          #   values:
-          #      namespace: ns2
-          # - cluster: in-cluster
-          #   url: https://kubernetes.default.svc
-          #   values:
-          #     namespace: ns3
+          - cluster: in-cluster
+            url: https://kubernetes.default.svc
+            values:
+               namespace: ns2
+          - cluster: in-cluster
+            url: https://kubernetes.default.svc
+            values:
+              namespace: ns3
   template:
     metadata:
       name: '{{.name}}-{{.values.namespace}}'
