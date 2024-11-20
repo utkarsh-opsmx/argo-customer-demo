@@ -8,7 +8,7 @@ data:
     #!/bin/bash
 
     # Define the applications to monitor
-    APPLICATIONS=("ecrapp-one-wave-ns1" "ecrapp-one-wave-ns2" "ecrapp-one-wave-ns3")
+    APPLICATIONS=("ecrapp-one-wave-ns1" "ecrapp-one-wave-ns2")
 
     # Check for status of each application until all conditions are met
     kubectl patch application.argoproj.io ecrapp-one-wave-ns1 ecrapp-one-wave-ns2 ecrapp-one-wave-ns3 --type merge -p '{"spec": {"syncPolicy": {"automated": {"prune": true, "selfHeal": true}}}}'
