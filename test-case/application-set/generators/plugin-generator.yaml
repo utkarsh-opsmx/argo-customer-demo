@@ -30,7 +30,7 @@ spec:
         targetRevision: testcase
       destination:
         server: https://kubernetes.default.svc
-        namespace: default
+        namespace: test
   templatePatch: |
     spec:
       source:
