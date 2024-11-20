@@ -26,7 +26,7 @@ spec:
       project: default
       source:
         repoURL: "https://github.com/OpsMx/argo-customer-demo.git"
-        path: multicm-plugin-helm
+        path: source-data/multicm-plugin-helm
         targetRevision: testcase
       destination:
         server: https://kubernetes.default.svc
