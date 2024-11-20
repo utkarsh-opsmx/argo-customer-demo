@@ -22,10 +22,12 @@ spec:
             url: https://kubernetes.default.svc
             values:
               namespace: ns1
+              sourcePath: source-data/pod-cm
           - cluster: in-cluster
             url: https://kubernetes.default.svc
             values:
                namespace: ns2
+               sourcePath: source-data/pod-cm
           - cluster: in-cluster
             url: https://kubernetes.default.svc
             values:
