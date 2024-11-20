@@ -1,18 +1,9 @@
 {
   "repoURL": "https://github.com/OpsMx/argo-customer-demo.git",
   "targetRevision": "testcase",
+  "sourcePath": "source-data/pod-cm",
   "chart": "",
   "namespace": "test",
   "name": "ecrapp-one-wave",
-  "syncwave" : "one",
-  "abcd": "",
   "ref": "main"
 }
-
-
-
-
-
-
-
-
