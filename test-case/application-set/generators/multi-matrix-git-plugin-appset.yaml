@@ -30,7 +30,7 @@ spec:
                 parameters:
                   repo: "OpsMx/argo-customer-demo"
                   branch: "testcase"
-                  folder: "pluginfiles"
+                  folder: "source-data/pluginfiles"
               #requeueAfterSeconds: 120
   strategy:
     type: RollingSync
