@@ -42,7 +42,7 @@ spec:
       source:
         repoURL: https://github.com/OpsMx/argo-customer-demo.git
         targetRevision: testcase
-        path: '{{ .sourcePath }}'
+        path: '{{ .values.sourcePath }}'
         #path: source-data/configmap
       destination:
         server: '{{.url}}'
