@@ -73,13 +73,6 @@ spec:
         - repoURL: https://github.com/OpsMx/argo-customer-demo.git
           targetRevision: testcase
           path: '{{ .sourcePath }}'
-          #source-data/pod-cm
-          # path: |
-          #   {{ if eq .syncWave "three" }}
-          #     source-data/my-sa
-          #   {{ else }}
-          #     source-data/pod-cm
-          #   {{ end }}
       syncPolicy:
         automated:
           prune: true
