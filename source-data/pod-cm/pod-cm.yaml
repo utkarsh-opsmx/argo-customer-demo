@@ -20,25 +20,3 @@ spec:
     image: nginx:latest
     ports:
     - containerPort: 80
----
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: my-job
-  annotations:
-    argocd.argoproj.io/hook: PostSync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
-spec:
-  #ttlSecondsAfterFinished: 60
-  template:
-    metadata:
-      labels:
-        app: my-job
-    spec:
-      containers:
-      - name: my-job-container
-        image: busybox
-        command: ["sh", "-c", "echo Hello Kubernetes! && sleep 240"]
-      restartPolicy: OnFailure
-
-
