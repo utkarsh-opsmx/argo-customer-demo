@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: git-pod1
   labels:
-    app: git
+    app: git1
 spec:
   containers:
   - name: nginx
