@@ -13,7 +13,7 @@ spec:
   source:
     directory:
       recurse: true
-    path: test-case/application-set
+    path: source-apps/application-set
     repoURL: https://github.com/OpsMx/argo-customer-demo
     targetRevision: testcase
   syncPolicy:
