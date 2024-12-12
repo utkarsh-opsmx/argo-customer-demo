@@ -12,17 +12,21 @@ spec:
       - matrix:
           generators:
           - git:
-              repoURL: https://github.com/gopaljayanthi/forjpmc.git
-              revision: HEAD
+              #repoURL: https://github.com/gopaljayanthi/forjpmc.git
+              #repoURL: https://github.com/srikanthopsmx/argocd-example-apps.git
+              repoURL:  https://github.com/OpsMx/argo-customer-demo.git              
+              revision: gitreqtest1
               files:
                 - path: "base/*/config.json"
-              requeueAfterSeconds: 360
+              requeueAfterSeconds: 30
           - git:
-              repoURL: https://github.com/gopaljayanthi/forjpmc.git
-              revision: HEAD
+              #repoURL: https://github.com/gopaljayanthi/forjpmc.git
+              #repoURL: https://github.com/srikanthopsmx/argocd-example-apps.git
+              repoURL:  https://github.com/OpsMx/argo-customer-demo.git
+              revision: gitreqtest1
               files:
                 - path: "test-git-files-generator/*/config.json"
-              requeueAfterSeconds: 360
+              requeueAfterSeconds: 30
       - plugin:
               configMapRef:
                 name: applicationset-hello-plugin
@@ -31,7 +35,7 @@ spec:
                   repo: "OpsMx/argo-customer-demo"
                   branch: "testcase"
                   folder: "source-data/pluginfiles"
-              #requeueAfterSeconds: 120
+              requeueAfterSeconds: 30
   strategy:
     type: RollingSync
     rollingSync:
