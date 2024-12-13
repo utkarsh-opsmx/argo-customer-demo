@@ -33,6 +33,12 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: test
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
   templatePatch: |
     spec:
       source:
