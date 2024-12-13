@@ -55,6 +55,7 @@ spec:
         myananotation: '{{ .label }}'
       labels:
         syncWave: '{{ .syncWave }}'
+        for: jpmc
     spec:
       project: default
       source:
