@@ -26,6 +26,8 @@ spec:
   template:
     metadata:
       name: "matrix-multicm-myplugin"
+      labels:
+        for: jpmc
       annotations:
         example.from.plugin.output: '{{ .label }}'
     spec:
