@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: single-git-source
+  name: app-status-check
   namespace: argocd
   labels:
      for: jpmc
