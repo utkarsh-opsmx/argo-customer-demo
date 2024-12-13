@@ -47,6 +47,8 @@ spec:
   template:
     metadata:
       name: '{{.values.name}}-{{.values.namespace}}'
+      labels:
+        for: jpmc
     spec:
       project: default
       source:
