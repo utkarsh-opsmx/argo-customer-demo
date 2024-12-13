@@ -12,14 +12,14 @@ spec:
       - matrix:
           generators:
           - git:
-              repoURL: https://github.com/OpsMx/argo-customer-demo.git
-              revision: gitreqtest1
+              repoURL: "https://github.com/OpsMx/argo-customer-demo.git"
+              revision: "gitreqtest1"
               files:
                 - path: "base/*/config.json"
               requeueAfterSeconds: 30
           - git:
-              repoURL: https://github.com/OpsMx/argo-customer-demo.git
-              revision: gitreqtest1
+              repoURL: "https://github.com/OpsMx/argo-customer-demo.git"
+              revision: "gitreqtest1"
               files:
                 - path: "test-git-files-generator/*/config.json"
               requeueAfterSeconds: 30
