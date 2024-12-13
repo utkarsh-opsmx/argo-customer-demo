@@ -62,6 +62,8 @@ kind: Job
 metadata:
   name: argocd-app-status-job
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/hook: PostSync
 spec:
   template:
     spec:
