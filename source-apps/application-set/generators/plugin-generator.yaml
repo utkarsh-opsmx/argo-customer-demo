@@ -20,6 +20,8 @@ spec:
   template:
     metadata:
       name: "multicm-myplugin"
+      labels:
+        for: jpmc
       annotations:
         example.from.plugin.output: "{{ .contents }}"
     spec:
