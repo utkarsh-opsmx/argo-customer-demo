@@ -41,13 +41,13 @@ spec:
             operator: In
             values:
               - zero
-          maxUpdate: 100%
+          maxUpdate: 50%
         - matchExpressions:
           - key: syncWave
             operator: In
             values:
               - one
-          maxUpdate: 100%
+          maxUpdate: 50%
   template:
     metadata:
       name: '{{.name}}-{{ .label }}'
