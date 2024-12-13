@@ -1,5 +1,4 @@
 {
-
-"label": "from-git-generator-qa17"
-
+  "name":"qa17-app",
+  "syncWave": "zero"
 }

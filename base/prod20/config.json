@@ -1,5 +1,4 @@
 {
-
-"label": "from-git-generator-prod20"
-
+  "name":"prod20-app",
+  "syncWave": "zero"
 }

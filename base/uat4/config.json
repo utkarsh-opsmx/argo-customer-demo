@@ -1,5 +1,4 @@
 {
-
-"label": "from-git-generator-uat04"
-
+  "name":"uat4-app",
+  "syncWave": "zero"
 }

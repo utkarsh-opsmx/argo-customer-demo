@@ -1,5 +1,4 @@
 {
-
-"label": "from-git-generator-stage5"
-
+  "name":"staging5-app",
+  "syncWave": "zero"
 }

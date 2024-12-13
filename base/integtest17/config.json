@@ -1,5 +1,4 @@
 {
-
-"label": "from-git-generator-integtest17"
-
+  "name":"integtest17-app",
+  "syncWave": "zero"
 }
