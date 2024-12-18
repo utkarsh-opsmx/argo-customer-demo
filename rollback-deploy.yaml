@@ -10,7 +10,7 @@ spec:
     namespace: argocd-kt
     server: 'https://kubernetes.default.svc'
   source:
-    path: source-data/test
+    path: base1/rollback
     repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'
     targetRevision: gitreqtest1
   project: default
