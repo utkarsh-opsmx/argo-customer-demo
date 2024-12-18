@@ -14,7 +14,7 @@ spec:
         app: simple-app
     spec:
       containers:
-      - name: nginx1
+      - name: nginx12
         image: nginx:1.19
         ports:
         - containerPort: 80
