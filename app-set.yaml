@@ -13,9 +13,9 @@ spec:
   source:
     directory:
       recurse: true
-    path: source-apps/application-set
+    path: source-apps/application-set/generators
     repoURL: https://github.com/OpsMx/argo-customer-demo
-    targetRevision: testcase
+    targetRevision: test1
   syncPolicy:
     #automated: {}
     syncOptions:

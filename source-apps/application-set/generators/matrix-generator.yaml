@@ -27,7 +27,7 @@ spec:
       project: default
       source:
         repoURL: "https://github.com/OpsMx/argo-customer-demo.git"
-        targetRevision: "testcase"
+        targetRevision: "test1"
         path: "{{valuesPath}}"
       destination:
         server: "https://kubernetes.default.svc"

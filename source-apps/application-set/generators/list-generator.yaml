@@ -9,11 +9,11 @@ spec:
         elements:
           - name: list-application-set-app1
             repoURL: https://github.com/OpsMx/argo-customer-demo.git          #pod
-            targetRevision: testcase
+            targetRevision: test1
             path: source-data/application-set-data/list-data/app1
           - name: list-application-set-app2
             repoURL: https://github.com/OpsMx/argo-customer-demo.git           #service
-            targetRevision: testcase
+            targetRevision: test1
             path: source-data/application-set-data/list-data/app2
   template:
     metadata:
