@@ -1,0 +1,122 @@
+﻿Argo CD Application Metrics
+________________
+
+
+Prometheus url : https://prometheus.jpmc.opsmx.net/graph?g0.expr=count(argocd_app_info%20%7B%20health_status%3D%22Healthy%22%2Csync_status%3D%22Synced%22%7D)%2Fcount(argocd_app_info)%20*100&g0.tab=1&g0.display_mode=lines&g0.show_exemplars=0&g0.range_input=1w&g1.expr=count(argocd_app_info%20%7B%20health_status!%3D%22Healthy%22%2Csync_status%3D%22Synced%22%7D)%2Fcount(argocd_app_info)%20*100&g1.tab=1&g1.display_mode=lines&g1.show_exemplars=0&g1.range_input=1h&g2.expr=count(argocd_app_info%20%7B%20health_status%3D%22Healthy%22%2Csync_status!%3D%22Synced%22%7D)%2Fcount(argocd_app_info)%20*100&g2.tab=1&g2.display_mode=lines&g2.show_exemplars=0&g2.range_input=1h&g3.expr=count(argocd_app_info%20%7B%20health_status!%3D%22Healthy%22%2Csync_status!%3D%22Synced%22%7D)%2Fcount(argocd_app_info)%20*100&g3.tab=1&g3.display_mode=lines&g3.show_exemplars=0&g3.range_input=1h&g4.expr=argocd_app_info&g4.tab=1&g4.display_mode=lines&g4.show_exemplars=0&g4.range_input=1h
+
+
+
+
+1. Percentage of Healthy and Synced Applications
+Query: count(argocd_app_info{health_status="Healthy", sync_status="Synced"}) / count(argocd_app_info) * 100
+Description: The percentage of applications that are both Healthy and Synced.
+
+
+   2. Percentage of Not Healthy but Synced Applications
+Query: count(argocd_app_info{health_status!="Healthy", sync_status="Synced"}) / count(argocd_app_info) * 100
+Description: The percentage of applications that are not Healthy but are Synced.
+
+
+      3. Percentage of Healthy but Not Synced Applications
+Query: count(argocd_app_info{health_status="Healthy", sync_status!="Synced"}) / count(argocd_app_info) * 100
+Description: The percentage of applications that are Healthy but are not Synced.
+
+
+         4. Percentage of Not Healthy and Not Synced Applications
+count(argocd_app_info{health_status!="Healthy", sync_status!="Synced"}) / count(argocd_app_info) * 100
+Description: The percentage of applications that are neither Healthy nor Synced.
+________________
+
+
+                        Number of Applications 
+Prometheus url : https://prometheus.jpmc.opsmx.net/graph?g0.expr=count(argocd_app_info%20%7B%20health_status%3D%22Healthy%22%2Csync_status%3D%22Synced%22%7D)%2Fcount(argocd_app_info)%20*100&g0.tab=1&g0.display_mode=lines&g0.show_exemplars=0&g0.range_input=1w&g1.expr=count(argocd_app_info%20%7B%20health_status!%3D%22Healthy%22%2Csync_status%3D%22Synced%22%7D)%2Fcount(argocd_app_info)%20*100&g1.tab=1&g1.display_mode=lines&g1.show_exemplars=0&g1.range_input=1h&g2.expr=count(argocd_app_info%20%7B%20health_status%3D%22Healthy%22%2Csync_status!%3D%22Synced%22%7D)%2Fcount(argocd_app_info)%20*100&g2.tab=1&g2.display_mode=lines&g2.show_exemplars=0&g2.range_input=1h&g3.expr=count(argocd_app_info%20%7B%20health_status!%3D%22Healthy%22%2Csync_status!%3D%22Synced%22%7D)%2Fcount(argocd_app_info)%20*100&g3.tab=1&g3.display_mode=lines&g3.show_exemplars=0&g3.range_input=1h&g4.expr=argocd_app_info&g4.tab=1&g4.display_mode=lines&g4.show_exemplars=0&g4.range_input=1h
+
+
+
+
+            5. Count of Healthy and Synced Applications
+Query: count(argocd_app_info{health_status="Healthy", sync_status="Synced"})
+Description: The Number  of applications that are both Healthy and Synced.
+
+
+               6.  Count of Not Healthy but Synced Applications
+Query: count(argocd_app_info{health_status!="Healthy", sync_status="Synced"})
+Description: The Number  of applications that are not Healthy but are Synced.
+
+
+                  7. Count of Healthy but Not Synced Applications
+Query: count(argocd_app_info{health_status="Healthy", sync_status!="Synced"})
+Description: The Number of applications that are Healthy but are not Synced.
+
+
+                     8. Count of Not Healthy and Not Synced Applications
+count(argocd_app_info{health_status!="Healthy", sync_status!="Synced"})
+Description: The Number of applications that are neither Healthy nor Synced.
+________________
+
+
+Count of status changes not associated with a Git change                                 Time Metrics: Commit to Sync
+Prometheus url : https://prometheus.jpmc.opsmx.net/graph?g0.expr=time_from_commit_to_start_sync&g0.tab=1&g0.display_mode=lines&g0.show_exemplars=0&g0.range_input=1w&g1.expr=max(time_from_commit_to_start_sync)&g1.tab=1&g1.display_mode=lines&g1.show_exemplars=0&g1.range_input=1h&g2.expr=min(time_from_commit_to_start_sync)&g2.tab=1&g2.display_mode=lines&g2.show_exemplars=0&g2.range_input=1h&g3.expr=avg(time_from_commit_to_start_sync)&g3.tab=1&g3.display_mode=lines&g3.show_exemplars=0&g3.range_input=1h
+
+
+                        1. Time from GitHub Commit to Start Sync
+Query: time_from_commit_to_start_sync
+Description: The time taken for an Argo CD application to begin synchronization after a GitHub commit.
+                           2. Maximum Time from GitHub Commit to Start Sync
+Query: max(time_from_commit_to_start_sync)
+Description: The maximum time taken for an application to start synchronization after a GitHub commit.
+
+
+                              3. Minimum Time from GitHub Commit to Start Sync
+Query: min(time_from_commit_to_start_sync)
+Description: The minimum time taken for an application to start synchronization after a GitHub commit.
+
+
+                                 4. Average Time from GitHub Commit to Start Sync
+Query: avg(time_from_commit_to_start_sync)
+Description: The average time taken for applications to start synchronization after a GitHub commit.
+________________
+
+
+Time Metrics: Sync Completion
+Prometheus url : https://prometheus.jpmc.opsmx.net/graph?g0.expr=time_to_sync&g0.tab=1&g0.display_mode=lines&g0.show_exemplars=0&g0.range_input=1w&g1.expr=min(time_to_sync)&g1.tab=1&g1.display_mode=lines&g1.show_exemplars=0&g1.range_input=1h&g2.expr=max(time_to_sync)&g2.tab=1&g2.display_mode=lines&g2.show_exemplars=0&g2.range_input=1h&g3.expr=avg(time_to_sync)&g3.tab=1&g3.display_mode=lines&g3.show_exemplars=0&g3.range_input=1h
+
+
+                                    1. Time to Sync Completion
+Query:time_to_sync
+Description: The total time taken for an Argo CD application to complete the synchronization process.
+
+
+                                       2. Minimum Time to Sync Completion
+Query: min(time_to_sync)
+Description: The minimum time taken for an application to complete the synchronization process.
+
+
+                                          3. Maximum Time to Sync Completion
+Query: max(time_to_sync)
+Description: The maximum time taken for an application to complete the synchronization process.
+
+
+
+
+                                             4. Average Time to Sync Completion
+Query: avg(time_to_sync)
+Description: The average time taken for applications to complete the synchronization process.
+________________
+
+
+                                      Additional Metrics
+                                                1. Failed Deployments
+Query: count(argocd_app_info{health_status!="Healthy"})
+Description: The total number of deployments in Argo CD that are not Healthy.
+
+
+                                                   2. Total Deployments in Namespace argocd
+Query: count(kube_deployment_created{namespace="argocd"})
+Description: The total number of Kubernetes deployments created in the argocd namespace.
+________________
+
+
+Prometheus Query Data Sheet
+The sheet linked below contains data related to Prometheus queries for Argo CD metrics. 
+https://docs.google.com/spreadsheets/d/1WGrrslN2HUWA-Ibnaw_786Vk-gghk4YtksL12MqZGRI/edit?gid=0#gid=0
