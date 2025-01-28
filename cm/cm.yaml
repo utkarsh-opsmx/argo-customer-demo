@@ -1,6 +1,7 @@
 apiVersion: v1
 data:
   foo: bar
+  goo: car
 kind: ConfigMap
 metadata:
   creationTimestamp: null
