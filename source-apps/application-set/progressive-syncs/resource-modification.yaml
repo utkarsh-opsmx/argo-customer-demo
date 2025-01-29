@@ -10,8 +10,8 @@ spec:
   syncPolicy:
     #preserveResourcesOnDeletion: false               
     #applicationsSync: create-only
-    applicationsSync: create-update
-    #applicationsSync: create-delete
+    #applicationsSync: create-update
+    applicationsSync: create-delete
     #preserveResourcesOnDeletion: false
     #preserveResourcesOnDeletion: true
   goTemplate: true
