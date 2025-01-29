@@ -32,12 +32,12 @@ spec:
               namespace: ns11
               name: one
               sourcePath: source-data/configmap
-          # - cluster: in-cluster
-          #   url: https://kubernetes.default.svc
-          #   values:
-          #      namespace: ns25
-          #      name: two
-          #      sourcePath: source-data/configmap
+          - cluster: in-cluster
+            url: https://kubernetes.default.svc
+            values:
+               namespace: ns25
+               name: two
+               sourcePath: source-data/configmap
           # - cluster: in-cluster
           #   url: https://kubernetes.default.svc
           #   values:
