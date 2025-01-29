@@ -4,7 +4,8 @@ data:
   secondkey: secondvalue
   thirdkey: thirdvalue
   fourth: fourth-value
-  five: five-value11111
+  five: five-value
+  six: six
 kind: ConfigMap
 metadata:
   name: twosources-5
