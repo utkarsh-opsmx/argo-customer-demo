@@ -3,6 +3,7 @@ data:
   foo: bar
   goo: car
   test: trial
+  benda: beera
 kind: ConfigMap
 metadata:
   creationTimestamp: null
