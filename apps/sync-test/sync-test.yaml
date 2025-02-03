@@ -6,12 +6,12 @@ metadata:
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: test
   project: default
   source:
-    repoURL: https://github.com/your-repo.git  # Replace with your repo URL
+    repoURL: https://github.com/OpsMx/argo-customer-demo.git  # Replace with your repo URL
     targetRevision: main
-    path: config  # Replace with the correct path containing the ConfigMap YAML
+    path: cm  # Replace with the correct path containing the ConfigMap YAML
   syncPolicy:
     automated:
       prune: true
