@@ -21,6 +21,8 @@ data:
   benda: beera
 kind: ConfigMap
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=confirm
   creationTimestamp: null
   name: somecm
 ---
