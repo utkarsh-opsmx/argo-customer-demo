@@ -23,7 +23,6 @@ kind: ConfigMap
 metadata:
   annotations:
     argocd.argoproj.io/sync-options: Prune=confirm, Delete=confirm
-  creationTimestamp: null
   name: somecm
 ---
 apiVersion: v1
