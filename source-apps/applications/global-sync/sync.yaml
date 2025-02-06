@@ -13,8 +13,8 @@ spec:
     targetRevision: testcase
     path: source-data/global-sync  # Replace with the correct path containing the ConfigMap YAML
   syncPolicy:
-    # automated:
-    #   prune: true
-    #   selfHeal: true
+    automated:
+      prune: true
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
