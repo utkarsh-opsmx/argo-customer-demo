@@ -1,18 +1,18 @@
-# apiVersion: batch/v1
-# kind: Job
-# metadata:
-#   name: sync-wait-job
-#   annotations:
-#     argocd.argoproj.io/hook: PreSync  # Ensures this job runs before syncing other resources
-# spec:
-#   template:
-#     spec:
-#       containers:
-#         - name: wait-container
-#           image: busybox
-#           command: ["sh", "-c", "sleep 300"]  # Introduce a delay of 25 seconds
-#       restartPolicy: Never
-# ---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sync-wait-job
+  annotations:
+    argocd.argoproj.io/hook: PreSync  # Ensures this job runs before syncing other resources
+spec:
+  template:
+    spec:
+      containers:
+        - name: wait-container
+          image: busybox
+          command: ["sh", "-c", "sleep 300"]  # Introduce a delay of 25 seconds
+      restartPolicy: Never
+---
 apiVersion: v1
 data:
   foo: bar
