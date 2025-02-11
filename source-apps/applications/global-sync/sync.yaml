@@ -13,14 +13,14 @@ spec:
     targetRevision: testcase
     path: source-data/global-sync  # Replace with the correct path containing the ConfigMap YAML
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+    # automated:
+    #   prune: true
+    #   selfHeal: true
     syncOptions:
       - CreateNamespace=true
-    # retry:
-    #   limit: 5
-    #   backoff:
-    #     duration: 5s
-    #     factor: 2
-    #     maxDuration: 3m
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
