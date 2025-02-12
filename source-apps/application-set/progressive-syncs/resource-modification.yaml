@@ -10,8 +10,8 @@ spec:
   syncPolicy:
     #preserveResourcesOnDeletion: false               
     #applicationsSync: create-only
-    applicationsSync: create-update
-    #applicationsSync: create-delete
+    #applicationsSync: create-update
+    applicationsSync: create-delete
     #preserveResourcesOnDeletion: false
     preserveResourcesOnDeletion: true
   goTemplate: true
@@ -32,12 +32,12 @@ spec:
               namespace: ns11
               name: one
               sourcePath: source-data/configmap
-          - cluster: in-cluster
-            url: https://kubernetes.default.svc
-            values:
-               namespace: ns23
-               name: two
-               sourcePath: source-data/configmap
+          # - cluster: in-cluster
+          #   url: https://kubernetes.default.svc
+          #   values:
+          #      namespace: ns23
+          #      name: two
+          #      sourcePath: source-data/configmap
           # - cluster: in-cluster
           #   url: https://kubernetes.default.svc
           #   values:
