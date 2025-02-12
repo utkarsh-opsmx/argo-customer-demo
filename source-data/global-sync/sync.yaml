@@ -1,24 +1,43 @@
-apiVersion: batch/v1
-kind: Job
+apiVersion: v1
+kind: Pod
 metadata:
-  name: sync-wait-job
-  # annotations:
-  #   argocd.argoproj.io/hook: PreSync
+  name: configmap-mount-pod
+  labels:
+    app: configmap-example
 spec:
-  template:
-    spec:
-      containers:
-        - name: wait-container
-          image: busybox
-          command: ["sh", "-c", "sleep 300"]  # Introduce a delay of 25 seconds
-          volumeMounts:
-            - name: dummy-config
-              mountPath: /etc/dummy
-      volumes:
-        - name: dummy-config
-          configMap:
-            name: dummy-configmap
-      restartPolicy: Never
+  containers:
+    - name: app-container
+      image: nginx:latest
+      volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
+  volumes:
+    - name: config-volume
+      configMap:
+        name: example-configmap
+
+---
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: sync-wait-job
+#   # annotations:
+#   #   argocd.argoproj.io/hook: PreSync
+# spec:
+#   template:
+#     spec:
+#       containers:
+#         - name: wait-container
+#           image: busybox
+#           command: ["sh", "-c", "sleep 300"]  # Introduce a delay of 25 seconds
+#           volumeMounts:
+#             - name: dummy-config
+#               mountPath: /etc/dummy
+#       volumes:
+#         - name: dummy-config
+#           configMap:
+#             name: dummy-configmap
+#       restartPolicy: Never
 ---
 apiVersion: v1
 data:
