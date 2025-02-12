@@ -11,8 +11,8 @@ spec:
     #preserveResourcesOnDeletion: false               
     #applicationsSync: create-only
     #applicationsSync: create-update
-    applicationsSync: create-delete
-    #preserveResourcesOnDeletion: false
+    #applicationsSync: create-delete
+    preserveResourcesOnDeletion: false
     #preserveResourcesOnDeletion: true
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
