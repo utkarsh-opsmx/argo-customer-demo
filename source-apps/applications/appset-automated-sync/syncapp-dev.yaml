@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: automated-sync-dev
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: sync-dev-test
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      allowEmpty: true
+  ignoreDifferences:
+    - kind: PersistentVolumeClaim
+      jsonPointers:
+        - /spec/storageClassName
+  sources:
+    - repoURL: http://shiveshabhishek.github.io/forjpmc/helm-packages
+      targetRevision: 0.1.0
+      path: ''
+      helm:
+        valueFiles:
+          - $values/source-data/automated-sync/appset-values/values.yaml
+          - $valueOverlay/source-data/automated-sync/appset-values/values-dev.yaml
+        parameters:
+          - name: awsDeploymentRegion
+            value: us-east-1
+          - name: awsDeploymentEnvironment
+            value: dev
+          - name: vpcEndpointCidr
+            value: 10.2.0.0/18
+        passCredentials: true
+      chart: testchart
+    - repoURL: https://github.com/OpsMx/argo-customer-demo.git
+      targetRevision: testcase
+      ref: values
+    - repoURL: https://github.com/OpsMx/argo-customer-demo.git
+      targetRevision: testcase
+      ref: valueOverlay
