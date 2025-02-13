@@ -34,7 +34,7 @@ spec:
           - name: vpcEndpointCidr
             value: 10.2.0.0/18
         passCredentials: true
-      chart: testchart
+      chart: appset-chart
     - repoURL: https://github.com/OpsMx/argo-customer-demo.git
       targetRevision: testcase
       ref: values
