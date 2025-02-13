@@ -18,14 +18,14 @@ spec:
               repoURL: {{ $repo.repoUrl }}
               revision: {{ $repo.branch | default "master" }}
               files:
-                - path: "source-data/workloads/{{ $val.environment }}/*/config.json"
+                - path: "source-data/appset-autoSync-check/workloads/{{ $val.environment }}/*/config.json"
               pathParamPrefix: config
               requeueAfterSeconds: {{ $repo.gitRequeue | default 1200 }}
           - git:
               repoURL: {{ $repo.repoUrl }}
               revision: {{ $repo.branch | default "master" }}
               files:
-                - path: "source-data/base/{{ "{{.appName}}" }}/config.json"
+                - path: "source-data/appset-autoSync-check/base/{{ "{{.appName}}" }}/config.json"
               pathParamPrefix: appConfig
               requeueAfterSeconds: {{ $repo.gitRequeue | default 1200 }}
           #- plugin:
