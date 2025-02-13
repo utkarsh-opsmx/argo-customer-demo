@@ -3,7 +3,17 @@ entries:
   appset-chart:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-02-13T15:46:22.941449057+05:30"
+    created: "2025-02-13T17:16:27.940603849+05:30"
+    description: A Helm chart for Kubernetes
+    digest: bad5dff30c72b622216e5ee2337a99242483a36b61182be80568fdc9f3603577
+    name: appset-chart
+    type: application
+    urls:
+    - appset-chart-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-02-13T17:16:27.940203447+05:30"
     description: A Helm chart for Kubernetes
     digest: 417c7d62f808946c838ca2cd984836a25c30f783383aaa198616099df4d5ddd4
     name: appset-chart
@@ -11,4 +21,4 @@ entries:
     urls:
     - appset-chart-0.1.0.tgz
     version: 0.1.0
-generated: "2025-02-13T15:46:22.940896167+05:30"
+generated: "2025-02-13T17:16:27.918383898+05:30"
