@@ -1,7 +1,7 @@
 {
-  "repoURL": "https://shiveshabhishek.github.io/helm-from-scratch/packages",
+  "repoURL": "https://opsmx.github.io/argo-customer-demo/helm-packages",
   "chart": "chart6",
   "chartVersion": "0.1.0",
-  "valuesPath": "base/prod3/values.yaml",
+  "valuesPath": "source-data/appset-autoSync-check/base/prod3/values.yaml",
   "syncwave": "six"
 }
