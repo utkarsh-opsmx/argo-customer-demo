@@ -19,7 +19,7 @@ spec:
       jsonPointers:
         - /spec/storageClassName
   sources:
-    - repoURL: http://shiveshabhishek.github.io/forjpmc/helm-packages
+    - repoURL: https://opsmx.github.io/argo-customer-demo/helm-packages
       targetRevision: 0.1.0
       path: ''
       helm:
