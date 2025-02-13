@@ -24,8 +24,8 @@ spec:
       path: ''
       helm:
         valueFiles:
-          - $values/source-data/automated-sync/appset-values/values.yaml
-          - $valueOverlay/source-data/automated-sync/appset-values/values-dev.yaml
+          - $values/source-data/appset-autoSync-check/automated-sync/appset-values/values.yaml
+          - $valueOverlay/source-data/appset-autoSync-check/automated-sync/appset-values/values-dev.yaml
         parameters:
           - name: awsDeploymentRegion
             value: us-east-1
