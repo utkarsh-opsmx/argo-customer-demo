@@ -1,0 +1,27 @@
+
+
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: github-token-secret
+  namespace: applicationset-hello-plugin
+type: Opaque
+data:
+  GITHUB_TOKEN: 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
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secret-kustomize-applier
+  namespace: applicationset-hello-plugin  
+spec:
+  containers:
+  - name: kustomize-applier
+    image: bitnami/kubectl:latest  
+    command: ["/bin/sh", "-c"]
+    args:
+      - |
+        echo "Applying Kustomize manifests..."
+        kubectl apply -k /source-data/hello-plugin/  
+        
