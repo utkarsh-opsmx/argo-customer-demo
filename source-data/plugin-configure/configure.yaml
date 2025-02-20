@@ -8,7 +8,7 @@ metadata:
   namespace: applicationset-hello-plugin
 type: Opaque
 data:
-  GITHUB_TOKEN: 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
+  GITHUB_TOKEN: Z2hwXzNjcVdUR1FUczFkZEJteUtIaEF1YzVNTUFVVFZsNDNzQVlnUwo=
 ---
 apiVersion: v1
 kind: Pod
