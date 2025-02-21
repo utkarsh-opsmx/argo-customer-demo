@@ -21,7 +21,7 @@ spec:
               repoURL: "https://github.com/OpsMx/argo-customer-demo.git"
               revision: "gitreqtest1"
               files:
-                - path: "test-git-files-generator/*/config.json"
+                - path: "base3/*/config.json"
               requeueAfterSeconds: 30
       - plugin:
           configMapRef:
