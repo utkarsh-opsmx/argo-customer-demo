@@ -1,60 +1,60 @@
-apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
-metadata:
-  name: matrix-multicm-myplugin
-  namespace: argocd
-spec:
-  goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
-  generators:
-    - matrix:
-        generators:
-          - git:
-              repoURL: https://github.com/OpsMx/argo-customer-demo.git
-              revision: gitreqtest1
-              files:
-                - path: "test-git-files-generator/dev1/config.json"
-          - plugin:
-              configMapRef:
-                name: applicationset-hello-plugin
-              input:
-                parameters:
-                  repo: "OpsMx/argo-customer-demo"
-                  branch: "testcase"
-                  folder: "source-data/pluginfiles"
-            #requeueAfterSeconds: 120
-  template:
-    metadata:
-      name: "matrix-multicm-myplugin"
-      labels:
-        for: jpmc
-      annotations:
-        example.from.plugin.output: '{{ .label }}'
-    spec:
-      project: default
-      source:
-        repoURL: "https://github.com/OpsMx/argo-customer-demo.git"
-        path: source-data/multicm-plugin-helm
-        targetRevision: testcase
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: test
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-        syncOptions:
-          - CreateNamespace=true
-  templatePatch: |
-    spec:
-      source:
-        helm:
-          parameters:
-          {{- if .contents }}
-          {{- range $fileName, $fileContents := .contents }}
-            - name: 'configMapFiles.{{ $fileName | replace "." "\\." }}'
-              value: '{{ $fileContents }}'
-          {{- end }}
-            - name: "name"
-              value: '{{.name}}'
-          {{- end }}
+# apiVersion: argoproj.io/v1alpha1
+# kind: ApplicationSet
+# metadata:
+#   name: matrix-multicm-myplugin
+#   namespace: argocd
+# spec:
+#   goTemplate: true
+#   goTemplateOptions: ["missingkey=error"]
+#   generators:
+#     - matrix:
+#         generators:
+#           - git:
+#               repoURL: https://github.com/OpsMx/argo-customer-demo.git
+#               revision: gitreqtest1
+#               files:
+#                 - path: "test-git-files-generator/dev1/config.json"
+#           - plugin:
+#               configMapRef:
+#                 name: applicationset-hello-plugin
+#               input:
+#                 parameters:
+#                   repo: "OpsMx/argo-customer-demo"
+#                   branch: "testcase"
+#                   folder: "source-data/pluginfiles"
+#             #requeueAfterSeconds: 120
+#   template:
+#     metadata:
+#       name: "matrix-multicm-myplugin"
+#       labels:
+#         for: jpmc
+#       annotations:
+#         example.from.plugin.output: '{{ .label }}'
+#     spec:
+#       project: default
+#       source:
+#         repoURL: "https://github.com/OpsMx/argo-customer-demo.git"
+#         path: source-data/multicm-plugin-helm
+#         targetRevision: testcase
+#       destination:
+#         server: https://kubernetes.default.svc
+#         namespace: test
+#       syncPolicy:
+#         automated:
+#           prune: true
+#           selfHeal: true
+#         syncOptions:
+#           - CreateNamespace=true
+#   templatePatch: |
+#     spec:
+#       source:
+#         helm:
+#           parameters:
+#           {{- if .contents }}
+#           {{- range $fileName, $fileContents := .contents }}
+#             - name: 'configMapFiles.{{ $fileName | replace "." "\\." }}'
+#               value: '{{ $fileContents }}'
+#           {{- end }}
+#             - name: "name"
+#               value: '{{.name}}'
+#           {{- end }}
