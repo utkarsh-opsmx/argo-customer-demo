@@ -25,7 +25,7 @@ spec:
             #requeueAfterSeconds: 120
   template:
     metadata:
-      name: "matrix-multicm-myplugin-1"
+      name: "matrix-multicm-myplugin-{{ .name }}"
       labels:
         for: jpmc
       annotations:
