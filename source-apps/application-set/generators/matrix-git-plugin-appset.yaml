@@ -11,7 +11,7 @@ spec:
         generators:
           - git:
               repoURL: https://github.com/OpsMx/argo-customer-demo.git
-              revision: gitrequtest1
+              revision: gitreqtest1
               files:
                 - path: "test-git-files-generator/dev/config.json"
           - plugin:
