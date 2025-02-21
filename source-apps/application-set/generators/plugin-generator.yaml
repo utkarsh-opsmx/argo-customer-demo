@@ -32,7 +32,7 @@ spec:
         targetRevision: testcase
       destination:
         server: https://kubernetes.default.svc
-        namespace: test
+        namespace: test1
       syncPolicy:
         automated:
           prune: true
