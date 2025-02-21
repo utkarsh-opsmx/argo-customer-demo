@@ -5,7 +5,7 @@ resources:
   - manifests/namespace.yaml
   - manifests/plugin-secret.yaml
   - manifests/service.yaml
-  - manifests/secret-git.yaml
+  #- manifests/secret-git.yaml
 configMapGenerator:
   - name: hello-plugin-script
     namespace: applicationset-hello-plugin
