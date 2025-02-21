@@ -13,7 +13,7 @@ spec:
               repoURL: https://github.com/OpsMx/argo-customer-demo.git
               revision: gitreqtest1
               files:
-                - path: "test-git-files-generator/dev/config.json"
+                - path: "test-git-files-generator/dev1/config.json"
           - plugin:
               configMapRef:
                 name: applicationset-hello-plugin
