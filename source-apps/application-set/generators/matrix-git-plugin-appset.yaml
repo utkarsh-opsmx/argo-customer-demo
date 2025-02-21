@@ -11,7 +11,7 @@ spec:
         generators:
           - git:
               repoURL: https://github.com/gopaljayanthi/forjpmc.git
-              revision: HEAD
+              revision: master
               files:
                 - path: "test-git-files-generator/dev/config.json"
           - plugin:
