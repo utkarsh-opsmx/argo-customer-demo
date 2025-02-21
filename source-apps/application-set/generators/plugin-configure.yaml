@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kustom-app-for-pluginConfigure
+  name: kustom-app-for-plugin-configure
   namespace: argocd
 spec:
   project: default
