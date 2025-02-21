@@ -10,8 +10,8 @@ spec:
     - matrix:
         generators:
           - git:
-              repoURL: https://github.com/gopaljayanthi/forjpmc.git
-              revision: master
+              repoURL: https://github.com/OpsMx/argo-customer-demo.git
+              revision: gitrequtest1
               files:
                 - path: "test-git-files-generator/dev/config.json"
           - plugin:
