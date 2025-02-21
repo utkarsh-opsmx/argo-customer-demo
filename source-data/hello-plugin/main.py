@@ -23,7 +23,7 @@ with open("/var/run/argo/token") as f:
     token = f.read().strip()
 
 # Define GitHub token for accessing the GitHub API
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN","").strip()
 
 def get_files_base64_encoded(token, repo_name, branch, folder_path):
     # Initialize the GitHub client
