@@ -22,7 +22,7 @@ spec:
                   repo: "OpsMx/argo-customer-demo"
                   branch: "testcase"
                   folder: "source-data/pluginfiles"
-            #requeueAfterSeconds: 120
+            requeueAfterSeconds: 120
   template:
     metadata:
       name: "matrix-multicm-myplugin"
