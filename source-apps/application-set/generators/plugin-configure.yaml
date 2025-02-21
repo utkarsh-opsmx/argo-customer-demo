@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kustom-app-for-pluginConfigure
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/OpsMx/argo-customer-demo.git'  # Replace with your Git repo
+    targetRevision: testcase
+    path: source-data/hello-plugin/ # Folder containing the Secret & Pod YAML files
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: applicationset-hello-plugin
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+     - CreateNamespace=true
