@@ -25,7 +25,7 @@ spec:
             #requeueAfterSeconds: 120
   template:
     metadata:
-      name: "matrix-multicm-myplugin"
+      name: "matrix-multicm-myplugin-1"
       labels:
         for: jpmc
       annotations:
@@ -38,7 +38,7 @@ spec:
         targetRevision: testcase
       destination:
         server: https://kubernetes.default.svc
-        namespace: default
+        namespace: test
       syncPolicy:
         automated:
           prune: true
