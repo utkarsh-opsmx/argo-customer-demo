@@ -67,7 +67,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: somecm1
-  namespace: default
+  # namespace: test
 data:
   foo: bar
   benda: beera
@@ -76,7 +76,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: my-secret1
-  namespace: default
+  # namespace: st
 type: Opaque
 data:
   username: +++++dXNlcm5hbWU=  # Base64 encoded value of "username"
