@@ -12,17 +12,17 @@ spec:
     repoURL: https://github.com/OpsMx/argo-customer-demo.git  # Replace with your repo URL
     targetRevision: testcase
     path: source-data/global-sync  # Replace with the correct path containing the ConfigMap YAML
-  # syncPolicy:
-  #   syncTimeout: 5 # seconds, default: unlimited
-  #   onSyncTimeout: "fail" # or "retry" (?), or "waitForUpdate" (?)
+  syncPolicy:
+    # syncTimeout: 5 # seconds, default: unlimited
+    # onSyncTimeout: "fail" # or "retry" (?), or "waitForUpdate" (?)
     # automated:
     #   prune: true
     #   selfHeal: true
-    # syncOptions:
-    #   - CreateNamespace=true
-    # retry:
-    #   limit: 2
-    #   backoff:
-    #     duration: 5s
-    #     factor: 2
-    #     maxDuration: 3m
+    syncOptions:
+      - CreateNamespace=true
+    retry:
+      limit: 2
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
