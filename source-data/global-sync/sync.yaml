@@ -86,7 +86,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: sync-wait-job1
-  namespace: default
+  # namespace: default
   annotations:
     argocd.argoproj.io/hook: PreSync
 spec:
