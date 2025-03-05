@@ -1,59 +1,59 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: long-running-app
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: long-running
-  template:
-    metadata:
-      labels:
-        app: long-running
-    spec:
-      containers:
-        - name: wait-container
-          image: busybox
-          command: ["sh", "-c", "while true; do sleep 3600; done"]  # Infinite loop
-
-
-
-
-# apiVersion: v1
-# kind: ConfigMap
+# apiVersion: apps/v1
+# kind: Deployment
 # metadata:
-#   name: somecm1
-#   #namespace: test
-# data:
-#   foo: bar
-#   benda: beera
-# ---
-# apiVersion: v1
-# kind: Secret
-# metadata:
-#   name: my-secret1
-#   # namespace: st
-# type: Opaque
-# data:
-#   username: +++++dXNlcm5hbWU=  # Base64 encoded value of "username"
-#   password: +++-=cGFzc3dvcmQ=  # Base64 encoded value of "password"
-# ---
-# apiVersion: batch/v1
-# kind: Job
-# metadata:
-#   name: sync-wait-job1
-#   # # namespace: default
-#   # annotations:
-#   #   argocd.argoproj.io/hook: PreSync
+#   name: long-running-app
 # spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: long-running
 #   template:
+#     metadata:
+#       labels:
+#         app: long-running
 #     spec:
 #       containers:
 #         - name: wait-container
 #           image: busybox
-#           command: ["sh", "-c", "sleep 300"]  # Introduce a delay of 300 seconds
-#       restartPolicy: Never  # Required for Jobs
+#           command: ["sh", "-c", "while true; do sleep 3600; done"]  # Infinite loop
+
+
+
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: somecm1
+  #namespace: test
+data:
+  foo: bar
+  benda: beera
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-secret1
+  # namespace: st
+type: Opaque
+data:
+  username: +++++dXNlcm5hbWU=  # Base64 encoded value of "username"
+  password: +++-=cGFzc3dvcmQ=  # Base64 encoded value of "password"
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sync-wait-job1
+  # # namespace: default
+  # annotations:
+  #   argocd.argoproj.io/hook: PreSync
+spec:
+  template:
+    spec:
+      containers:
+        - name: wait-container
+          image: busybox
+          command: ["sh", "-c", "while true; do sleep 3600; done"]  # Introduce a delay of 300 seconds
+      #restartPolicy: Never  # Required for Jobs
 
 
 # apiVersion: batch/v1
