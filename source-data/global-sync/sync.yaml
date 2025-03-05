@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: long-running-job
+  name: long-running-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: long-running-job
+      app: long-running
   template:
     metadata:
       labels:
-        app: long-running-job
+        app: long-running
     spec:
       containers:
         - name: wait-container
