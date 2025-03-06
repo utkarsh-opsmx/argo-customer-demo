@@ -1,17 +1,18 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: infinite-sync-job
-  labels:
-    app.kubernetes.io/name: infinite-sync-job
+  name: argocd-infinite-sync-job
+  annotations:
+    argocd.argoproj.io/hook: Sync
 spec:
+  backoffLimit: 0
   template:
     spec:
+      restartPolicy: Never
       containers:
       - name: infinite-job
         image: busybox
-        command: ["sh", "-c", "while true; do sleep 3600; done"]
-      restartPolicy: Never
+        command: ["sh", "-c", "echo 'Syncing...'; sleep infinity"]
 
 
 # apiVersion: v1
