@@ -110,4 +110,27 @@ spec:
           image: busybox
           command: ["sh", "-c", "sleep 5400"]  # Sleep for 90 minutes (5400 seconds)
       restartPolicy: Never
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dummy-sync
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dummy
+  template:
+    metadata:
+      labels:
+        app: dummy
+    spec:
+      containers:
+        - name: dummy
+          image: busybox
+          command: ["sh", "-c", "sleep 3600"]  # Sleep for 1 hour
+          readinessProbe:
+            exec:
+              command: ["false"]  # Keeps the Pod in "Not Ready" state
+            periodSeconds: 10
 
