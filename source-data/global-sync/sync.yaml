@@ -13,7 +13,7 @@ metadata:
 type: Opaque
 data:
   username: dXNlcm5hbWU=  # Base64 encoded value of "username"
-  password: ++cGFzc3dvcmQ=  # Base64 encoded value of "password"
+  password: cGFzc3dvcmQ=  # Base64 encoded value of "password"
 ---
 apiVersion: batch/v1
 kind: Job
