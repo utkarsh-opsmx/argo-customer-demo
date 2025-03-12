@@ -1,28 +1,28 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: argocd-global-sync-timeout
-  namespace: argocd
-spec:
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: test
-  project: default
-  source:
-    repoURL: https://github.com/OpsMx/argo-customer-demo.git  # Replace with your repo URL
-    targetRevision: testcase
-    path: source-data/global-sync  # Replace with the correct path containing the ConfigMap YAML
-  syncPolicy:
-    # syncTimeout: 5 # seconds, default: unlimited
-    # onSyncTimeout: "fail" # or "retry" (?), or "waitForUpdate" (?)
-    # automated:
-    #   prune: true
-    #   selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
-    # retry:
-    #   limit: 2
-    #   backoff:
-    #     duration: 5s
-    #     factor: 2
-    #     maxDuration: 3m
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: argocd-global-sync-timeout
+#   namespace: argocd
+# spec:
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: test
+#   project: default
+#   source:
+#     repoURL: https://github.com/OpsMx/argo-customer-demo.git  # Replace with your repo URL
+#     targetRevision: testcase
+#     path: source-data/global-sync  # Replace with the correct path containing the ConfigMap YAML
+#   syncPolicy:
+#     # syncTimeout: 5 # seconds, default: unlimited
+#     # onSyncTimeout: "fail" # or "retry" (?), or "waitForUpdate" (?)
+#     # automated:
+#     #   prune: true
+#     #   selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
+#     # retry:
+#     #   limit: 2
+#     #   backoff:
+#     #     duration: 5s
+#     #     factor: 2
+#     #     maxDuration: 3m
