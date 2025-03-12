@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
   myvalue: mykey
-  secondvalue: secondkey
+  secondvalue: secondkeyvdvdv
   thisdkey: thisdvalue
   fourth: four
   fifth: five
