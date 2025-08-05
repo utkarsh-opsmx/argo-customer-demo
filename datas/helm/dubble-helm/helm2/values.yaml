@@ -1,5 +1,5 @@
 replicaCount: 3
 image:
-  repository: popatlal2
+  repository: popatlal3
   tag: stable
   pullPolicy: IfNotPresent
