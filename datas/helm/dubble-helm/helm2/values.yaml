@@ -1,5 +1,5 @@
-replicaCount: 3
+replicaCount: 0
 image:
-  repository: popatlal3
+  repository: nginx
   tag: stable
   pullPolicy: IfNotPresent
