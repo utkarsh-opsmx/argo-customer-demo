@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: bitthalpatidar/my-repo:2
+          image: bitthalpatidar/my-repo:5
           imagePullPolicy: IfNotPresent
           command: ["/bin/sh", "-c", "while true; do echo mypod is running; sleep 5; done"]
       imagePullSecrets:
